@@ -7,8 +7,6 @@ public class FlyingState : PlayerState
     [Header("Speed")]
     public float MaxSpeed;
     public float BoostSpeed;
-    public float BaseSpeed;
-    public float MinSpeed;
     [Header("Acceleration")]
     public float Acceleration;
     public float Deceleration;
@@ -25,6 +23,11 @@ public class FlyingState : PlayerState
     [Header("Current Speed")]
     public float Speed;
     public float StrafeSpeed;
+    [Header("Bump Damage")]
+    public float MinDamage;
+    public float MaxDamage;
+    public float MinBumpSpeed;
+    public float MaxBumpSpeed;
 
     private Transform Model => Player.Model;
 
@@ -43,17 +46,13 @@ public class FlyingState : PlayerState
         float maxSpeed = Input.GetButton("Boost") ? BoostSpeed : MaxSpeed;
 
         //Acceleration
-        if(acceleration > Player.MinInput && Player.Velocity.magnitude < maxSpeed)
+        if(Player.Velocity.magnitude < maxSpeed)
         {
-            Player.Velocity += acceleration * Acceleration * DeltaTime * Model.forward;
+            Player.Velocity += Acceleration * DeltaTime * Model.forward;
         }
-        else if(acceleration < -Player.MinInput && Player.Velocity.magnitude > MinSpeed)
+        else if(Player.Velocity.magnitude > maxSpeed)
         {
-            Player.Velocity += acceleration * Deceleration * DeltaTime * Model.forward;
-        }
-        else if(Mathf.Abs(acceleration) < Player.MinInput || Player.Velocity.magnitude > maxSpeed)
-        {
-            Player.Velocity = Vector3.Lerp(Player.Velocity, Model.forward * BaseSpeed, SpeedLerp * DeltaTime);
+            Player.Velocity = Vector3.Lerp(Player.Velocity, Model.forward * maxSpeed, SpeedLerp * DeltaTime);
         }
 
         //Rotation
@@ -74,6 +73,12 @@ public class FlyingState : PlayerState
         }
 
         PlayerPhysics.HitData hit = PlayerPhysics.PreventCollision(Player.Cast, ref Player.Velocity, transform, DeltaTime, 0.03f);
+        if(hit.Hit)
+        {
+            float damage = Mathf.Lerp(MinDamage, MaxDamage, Mathf.Clamp01(hit.ImpactVelocity - MinBumpSpeed / (MaxBumpSpeed - MinBumpSpeed)));
+            gameObject.GetComponent<Health>().TakeDamage(damage);
+        }
+        
 
         Vector3 euler = Model.localEulerAngles;
         float modelRoll = euler.z;
