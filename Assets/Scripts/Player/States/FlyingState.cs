@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
 
 public class FlyingState : PlayerState
 {
@@ -29,10 +30,15 @@ public class FlyingState : PlayerState
     public float MinBumpSpeed;
     public float MaxBumpSpeed;
 
+    private PostProcessVolume volume;
+    private ChromaticAberration chromatic = null;
+
     private Transform Model => Player.Model;
 
     public override void Enter()
     {
+        volume = Camera.main.GetComponent<PostProcessVolume>();
+        volume.profile.TryGetSettings(out chromatic);
         Player.Velocity = Model.forward;
     }
         
@@ -53,6 +59,12 @@ public class FlyingState : PlayerState
         else if(Player.Velocity.magnitude > maxSpeed)
         {
             Player.Velocity = Vector3.Lerp(Player.Velocity, Model.forward * maxSpeed, SpeedLerp * DeltaTime);
+        }
+        if(Input.GetButton("Boost")){
+            chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 10f, 0.1f);
+        }
+        else{
+            chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 0f, 0.1f);
         }
 
         //Rotation
