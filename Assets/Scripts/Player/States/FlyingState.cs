@@ -68,6 +68,12 @@ public class FlyingState : PlayerState
         {
             Model.Rotate(Model.forward, roll * RollSpeed * DeltaTime, Space.World);
         }
+        if(Mathf.Abs(yaw) > Player.MinInput)
+        {
+            Model.Rotate(Model.up, pitch * YawSpeed * DeltaTime, Space.World);
+            Player.Velocity = Quaternion.AngleAxis(yaw * YawSpeed * DeltaTime, Model.up) * Player.Velocity;
+        }
+
         PlayerPhysics.HitData hit = PlayerPhysics.PreventCollision(Player.Cast, ref Player.Velocity, transform, DeltaTime, 0.03f);
 
         Vector3 euler = Model.localEulerAngles;
@@ -82,7 +88,7 @@ public class FlyingState : PlayerState
         //Movement
         transform.position += Player.Velocity * DeltaTime;
         Debug.DrawRay(transform.position, Player.Velocity, Color.magenta);
-
+        /*
         //Strafing
         float strafeVelocity = 0.0f;
         if (Mathf.Abs(yaw) > Player.MinInput)
@@ -99,6 +105,6 @@ public class FlyingState : PlayerState
 
         transform.position += velocity * DeltaTime;
         Debug.DrawRay(transform.position, velocity, Color.red);
-
+        */
     }
 }

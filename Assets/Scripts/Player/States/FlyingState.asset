@@ -25,8 +25,8 @@ MonoBehaviour:
   MaxStrafeSpeed: 25
   StrafeSmoothTime: 0.1
   StrafeDecelerationSmoothTime: 0.03
-  PitchUpSpeed: 150
-  PitchDownSpeed: 10
+  PitchUpSpeed: 90
+  PitchDownSpeed: 35
   RollSpeed: 170
   YawSpeed: 60
   Speed: 0
