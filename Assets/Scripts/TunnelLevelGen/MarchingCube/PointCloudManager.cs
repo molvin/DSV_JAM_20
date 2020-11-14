@@ -6,6 +6,7 @@ using UnityEngine;
 public class PointCloudManager : MonoBehaviour
 {
     public MarchingCubeMesh Prefab8X8;
+    public string GeoLayer;
 
     public float isoSurface;
     private Dictionary<Vector3Int, MarchingCubeMesh> meshGrid = new Dictionary<Vector3Int, MarchingCubeMesh>();
@@ -37,6 +38,7 @@ public class PointCloudManager : MonoBehaviour
                         meshGrid.Add(chuckID, mesh);
                         SetPointCloud(initDef, new Vector3(chuckID.x, chuckID.y, chuckID.z) * 8f);
                         marchShader.MarchCloud(ref pointCloud, ref verts, ref tris);
+                        mesh.gameObject.layer = LayerMask.NameToLayer(GeoLayer);
                         CleanVerts(mesh);
                     }
                 }
