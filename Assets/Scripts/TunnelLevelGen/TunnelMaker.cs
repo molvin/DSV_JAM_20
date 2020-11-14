@@ -22,10 +22,6 @@ public class TunnelMaker : MonoBehaviour
         }
 
     }
-    void Start()
-    {
-        SplineNoise3D.SplineLine = new List<SplineNoise3D.Spline>();
-    }
     public void makeSpline(int segmentCount, float sporadicFactor,float noiseScale)
     {
         Perlin3D.scale = noiseScale;
@@ -47,6 +43,7 @@ public class TunnelMaker : MonoBehaviour
     }
     public IEnumerator createLevelSLowLike(int segmentCount, float sporadicFactor, float noiseScale)
     {
+        SplineNoise3D.SplineLine = new List<SplineNoise3D.Spline>();
         makeSpline(segmentCount, sporadicFactor, noiseScale);
         for (int i = 0 ; i < segmentCount; i++)
         {
