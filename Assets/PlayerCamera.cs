@@ -22,7 +22,10 @@ public class PlayerCamera : MonoBehaviour
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPoint, ref velocity, SmoothTime);
 
-        transform.LookAt(Player.Model.TransformPoint(LookAtOffset), followCamera ? Player.Model.up : Vector3.up);
+
+
+        Quaternion target = Quaternion.LookRotation(Player.Model.forward, followCamera ? Player.Model.up : Vector3.up);
+        transform.rotation = Quaternion.Lerp(transform.rotation, target, 0.1f);
     }
 
 }

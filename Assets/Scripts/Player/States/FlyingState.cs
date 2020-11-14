@@ -39,7 +39,7 @@ public class FlyingState : PlayerState
     public override void StateUpdate()
     {
         //Input
-        float acceleration = Input.GetAxisRaw("Acceleration");
+        float topYaw = Input.GetAxisRaw("Acceleration");
         float pitch = Input.GetAxisRaw("Pitch");
         float roll = Input.GetAxisRaw("Roll");
         float yaw = Input.GetAxisRaw("Yaw");
@@ -68,8 +68,13 @@ public class FlyingState : PlayerState
         }
         if(Mathf.Abs(yaw) > Player.MinInput)
         {
-            Model.Rotate(Model.up, pitch * YawSpeed * DeltaTime, Space.World);
+            Model.Rotate(Model.up, yaw * YawSpeed * DeltaTime, Space.World);
             Player.Velocity = Quaternion.AngleAxis(yaw * YawSpeed * DeltaTime, Model.up) * Player.Velocity;
+        }
+        if (Mathf.Abs(topYaw) > Player.MinInput)
+        {
+            Model.Rotate(Model.right, topYaw * YawSpeed * DeltaTime, Space.World);
+            Player.Velocity = Quaternion.AngleAxis(topYaw * YawSpeed * DeltaTime, Model.right) * Player.Velocity;
         }
 
         PlayerPhysics.HitData hit = PlayerPhysics.PreventCollision(Player.Cast, ref Player.Velocity, transform, DeltaTime, 0.03f);
