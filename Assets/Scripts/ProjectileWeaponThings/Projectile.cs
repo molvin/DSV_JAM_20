@@ -43,7 +43,7 @@ public class Projectile : MonoBehaviour
         
         else
         {
-            transform.Translate(transform.forward * projectileData.travelSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * projectileData.travelSpeed * Time.deltaTime);
 
         }
 
