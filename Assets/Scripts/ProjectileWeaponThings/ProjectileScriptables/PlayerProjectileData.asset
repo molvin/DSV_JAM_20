@@ -14,7 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileRadius: 1
   travelSpeed: 6
-  impactRadius: 2
+  explosionRadius: 2
+  firingCooldown: 0.3
   targetLayers:
     serializedVersion: 2
     m_Bits: 513
