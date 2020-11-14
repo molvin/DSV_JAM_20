@@ -41,7 +41,6 @@ public class FlyingState : PlayerState
         float roll = Input.GetAxisRaw("Roll");
         float yaw = Input.GetAxisRaw("Yaw");
         float maxSpeed = Input.GetButton("Boost") ? BoostSpeed : MaxSpeed;
-        Debug.Log(maxSpeed);
 
         //Acceleration
         if(acceleration > Player.MinInput && Player.Velocity.magnitude < maxSpeed)
