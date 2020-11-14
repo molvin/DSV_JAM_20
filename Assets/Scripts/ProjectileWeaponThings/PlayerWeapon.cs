@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class PlayerWeapon : Weapon
 {
@@ -12,21 +13,24 @@ public class PlayerWeapon : Weapon
     {
         if ((Input.GetButton(k_FireString) || Input.GetAxisRaw("Shoot") > 0.6f) && firingCooldownTime < Time.time)
         {
-            FireProjectile(FindAutoAim(), transform.position);
+            var direction = transform.forward;
+            var tran = FindAutoAim();
+            if (tran)
+            {
+                direction = (tran.position - transform.position).normalized;
+            }
+
+            FireProjectile(direction, transform.position);
         }
 
     }
 
-    public Vector3 FindAutoAim()
+    public Transform FindAutoAim()
     {
-        foreach (var b in BoidsManager.Instance.Boids)
+        return BoidsManager.Instance.Boids.Where(b =>
         {
             Vector3 direction = b.transform.position - transform.position;
-            if (Vector3.Dot(transform.forward, direction.normalized) > .95)
-            {
-                return direction;
-            }
-        }
-        return transform.forward;
+            return Physics.Raycast(new Ray(transform.position, direction), direction.magnitude, Player.Instance.CollisionLayers) && Vector3.Dot(transform.forward, direction.normalized) > .98f;
+        }).OrderBy(b => Vector3.Distance(b.transform.position, transform.position)).Select(b => b.transform).FirstOrDefault();
     }
 }
