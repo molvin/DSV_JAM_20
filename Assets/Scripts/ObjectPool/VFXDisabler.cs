@@ -7,17 +7,17 @@ public class VFXDisabler : MonoBehaviour
     private void Awake()
     {
         gameObject.SetActive(true);
+
     }
     private void OnEnable()
     {
-        Debug.Log(Time.time);
         CancelInvoke("Disableself");
         GetComponent<ParticleSystem>().Play();
-        Invoke("Disableself", GetComponent<ParticleSystem>().main.startLifetime.constantMax);
-        Debug.Log(GetComponent<ParticleSystem>().main.duration + GetComponent<ParticleSystem>().main.startLifetime.constantMax);
+        Invoke("Disableself", 1.5f);
+
     }
     private void Disableself()
     {
-        transform.parent.gameObject.SetActive(false);
+        gameObject.SetActive(false);
     }
 }

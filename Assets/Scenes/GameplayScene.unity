@@ -383,33 +383,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4781957674237383035, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: followCamera
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4781957674433533060, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: MovementMachine._states.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4781957674433533060, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: MovementMachine._states.Array.data[1]
-      value: 
-      objectReference: {fileID: 11400000, guid: fc26ff19c0a8c7c4dac67605e0bcf906,
-        type: 2}
-    - target: {fileID: 4781957674433533060, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: MovementMachine._states.Array.data[0]
-      value: 
-      objectReference: {fileID: 11400000, guid: 6a1f12d1f0f4e444795aa8e867edb3a1,
-        type: 2}
-    - target: {fileID: 4781957674433533060, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: CollisionLayers.m_Bits
-      value: 268435457
-      objectReference: {fileID: 0}
     - target: {fileID: 4781957674433533081, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: m_Name
@@ -469,43 +442,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4781957674433533083, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: m_Radius
-      value: 0.06
-      objectReference: {fileID: 0}
-    - target: {fileID: 4781957674433533083, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: m_Center.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7127821016825733003, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: m_MainProjectileData
-      value: 
-      objectReference: {fileID: 11400000, guid: 87e451356d516e34f9ce86bc423cb6b7,
-        type: 2}
-    - target: {fileID: 7356400606896610008, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: m_MainProjectileData
-      value: 
-      objectReference: {fileID: 11400000, guid: 87e451356d516e34f9ce86bc423cb6b7,
-        type: 2}
-    - target: {fileID: 7982573599115957112, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7982573599115957112, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 0.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7982573599115957112, guid: 84823baaf98d39048a3f137671c0523f,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 84823baaf98d39048a3f137671c0523f, type: 3}
