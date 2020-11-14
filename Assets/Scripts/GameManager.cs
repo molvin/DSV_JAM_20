@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public Image FadeImage;
     public TextMeshProUGUI LoadingText;
     public TextMeshProUGUI ProgressText;
+    public TextMeshProUGUI LevelText;
     public GameObject VictoryUI;
     public float FadeOutTime;
     public float FadeInTime;
@@ -43,14 +44,18 @@ public class GameManager : MonoBehaviour
         StartCoroutine(buildLevel());
         IEnumerator buildLevel()
         {
+            PersistentData.Instance.Level++;
+
             PlayerGUI.Instance.Disable();
             LoadingUI.SetActive(true);
             LoadingText.gameObject.SetActive(true);
             ProgressText.gameObject.SetActive(true);
-            FadeImage.color = FadeImage.color.withAlpha(1.0f);
+            LevelText.gameObject.SetActive(true);
+            FadeImage.color = Color.black.withAlpha(1.0f);
 
             Player.Instance.gameObject.SetActive(false);
             ProgressText.text = $"Loaded 0/{Segments} Segments";
+            LevelText.text = $"Level {PersistentData.Instance.Level}";
             Tunnel.Progress += (i) => { ProgressText.text = $"Loaded {i+1}/{Segments} Segments"; };
             yield return Tunnel.createLevelSLowLike(Segments, Sporadic, NoiseScale);
 
@@ -71,16 +76,19 @@ public class GameManager : MonoBehaviour
 
             LoadingText.gameObject.SetActive(false);
             ProgressText.gameObject.SetActive(false);
+            LevelText.gameObject.SetActive(false);
+
 
             float t = 0.0f;
             while(t < FadeOutTime)
             {
                 t += Time.unscaledDeltaTime;
-                FadeImage.color = FadeImage.color.withAlpha(1f - t / FadeOutTime);
+                FadeImage.color = Color.black.withAlpha(1f - t / FadeOutTime);
                 yield return null;
             }
             LoadingUI.SetActive(false);
             Player.Instance.MovementMachine.TransitionTo<FlyingState>();
+
         }
     }
 
@@ -97,12 +105,17 @@ public class GameManager : MonoBehaviour
         StartCoroutine(DieRoutine());
         IEnumerator DieRoutine()
         {
+            LoadingUI.SetActive(true);
+            PlayerGUI.Instance.Disable();
+
             float t = 0.0f;
             while(t < 3)
             {
                 t += Time.unscaledDeltaTime;
+                FadeImage.color = Color.black.withAlpha(t / 3.0f);
                 yield return null;
             }
+            FadeImage.color = Color.black.withAlpha(1.0f);
 
             Vector3 forward = (SplineNoise3D.SplineHole[1].pos - SplineNoise3D.SplineHole[0].pos).normalized;
             Player.Instance.transform.position = SplineNoise3D.SplineHole[0].pos + forward * 2f;
@@ -117,12 +130,18 @@ public class GameManager : MonoBehaviour
             }
 
             t = 0.0f;
+            PlayerGUI.Instance.Enable();
+
             while (t < 3)
             {
                 t += Time.unscaledDeltaTime;
+                FadeImage.color = Color.black.withAlpha(1f - t / 3.0f);
                 yield return null;
             }
+            FadeImage.color = Color.black.withAlpha(0.0f);
+
             Player.Instance.MovementMachine.TransitionTo<FlyingState>();
+            LoadingUI.SetActive(false);
 
         }
 
@@ -133,15 +152,17 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("YOU WIN THE LEVEL");
         Player.Instance.gameObject.SetActive(false);
-
+        PlayerGUI.Instance.Disable();
         StartCoroutine(VictoryCoroutine());
         IEnumerator VictoryCoroutine()
         {
             float t = 0.0f;
+            LoadingUI.SetActive(true);
 
-            while(t < 3.0f)
+            while (t < 3)
             {
                 t += Time.unscaledDeltaTime;
+                FadeImage.color = Color.black.withAlpha(t / 3.0f);
                 yield return null;
             }
 
