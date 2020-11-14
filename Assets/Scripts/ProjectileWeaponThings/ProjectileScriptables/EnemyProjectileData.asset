@@ -12,9 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2725f842e174c794aa3c92e8a0f9ccd1, type: 3}
   m_Name: EnemyProjectileData
   m_EditorClassIdentifier: 
-  projectileRadius: 1
+  projectileRadius: 0.5
   travelSpeed: 3
-  impactRadius: 1.5
+  explosionRadius: 0
+  firingCooldown: 1
+  damage: 100
+  maxTravelDistance: 200
   targetLayers:
     serializedVersion: 2
     m_Bits: 257
