@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+        
         Player.Instance.GetComponent<Health>().onDeath += GameOver;
         LoadLevel();
         StartGame();
@@ -56,7 +57,6 @@ public class GameManager : MonoBehaviour
             {
                 BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment);
             }
-
 
             Vector3 forward = (SplineNoise3D.SplineLine[1].pos - SplineNoise3D.SplineLine[0].pos).normalized;
             Debug.Log(forward);
