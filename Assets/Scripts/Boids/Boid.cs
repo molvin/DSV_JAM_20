@@ -5,7 +5,6 @@ using UnityEngine;
 public class Boid : MonoBehaviour
 {
     public float MaxSpeed;
-    public float MaxForce;
     public float Radius;
     public float Acceleration;
 
@@ -74,7 +73,7 @@ public class Boid : MonoBehaviour
     private void SetFrameNeighbours() 
     {
         FrameNighbours = new List<Boid>();
-        foreach (Boid b in BoidsManager.Instance.Boids)
+       /* foreach (Boid b in BoidsManager.Instance.Boids)
         {
             if (b != this)
             {
@@ -83,6 +82,6 @@ public class Boid : MonoBehaviour
                     FrameNighbours.Add(b);
                 }
             }
-        }
+        }*/
     }
 }
