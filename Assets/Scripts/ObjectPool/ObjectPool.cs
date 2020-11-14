@@ -47,6 +47,7 @@ public class ObjectPool : MonoBehaviour
         }
     
         m_ImpactVFXPool.InitializePool(transform);
+        m_EnemyExplosionVFXPool.InitializePool(transform);
     }
     public GameObject rentObject(ObjectType ObjectType)
     {       
