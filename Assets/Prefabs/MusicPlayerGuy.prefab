@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5464739351357850560
+--- !u!1 &4825794414115296979
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,57 +8,44 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 5667611626395840414}
-  - component: {fileID: 6308286996567992023}
-  - component: {fileID: 3954955622239655428}
+  - component: {fileID: 4825794414115296977}
+  - component: {fileID: 4825794414115296978}
   m_Layer: 0
-  m_Name: SFXImpactPrefab
+  m_Name: MusicPlayerGuy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &5667611626395840414
+  m_IsActive: 1
+--- !u!4 &4825794414115296977
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464739351357850560}
+  m_GameObject: {fileID: 4825794414115296979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -25.711697, y: 5.0612793, z: -3.0496702}
+  m_LocalPosition: {x: -0.6348787, y: -0.11305174, z: 0.22975737}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6308286996567992023
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464739351357850560}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 97ad96a2970992b4ab8685c37a0ee5d6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!82 &3954955622239655428
+--- !u!82 &4825794414115296978
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5464739351357850560}
+  m_GameObject: {fileID: 4825794414115296979}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 249e40494402320468648f03b578f542, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 25a666c3787f9fa4f9d7b507c57f7439, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -100,7 +87,7 @@ AudioSource:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.958
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
