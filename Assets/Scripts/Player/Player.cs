@@ -5,6 +5,8 @@ using StateKraft;
 
 public class Player : MonoBehaviour
 {
+    public static Player Instance;
+
     public StateMachine MovementMachine;
     public Transform Model;
     [Header("Collision")]
@@ -18,6 +20,7 @@ public class Player : MonoBehaviour
 
     private void Start()
     {
+        Instance = this;
         MovementMachine.Initialize(this);
     }
     private void Update()
