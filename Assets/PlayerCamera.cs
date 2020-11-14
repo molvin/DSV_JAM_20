@@ -8,6 +8,7 @@ public class PlayerCamera : MonoBehaviour
     public Vector3 LookAtOffset;
     public float SmoothTime;
     public Player Player;
+    public bool followCamera;
 
     private Vector3 velocity;
 
@@ -21,7 +22,7 @@ public class PlayerCamera : MonoBehaviour
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPoint, ref velocity, SmoothTime);
 
-        transform.LookAt(Player.Model.TransformPoint(LookAtOffset), Player.Model.up);
+        transform.LookAt(Player.Model.TransformPoint(LookAtOffset), followCamera ? Player.Model.up : Vector3.up);
     }
 
 }
