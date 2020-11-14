@@ -8,6 +8,7 @@ public class Projectile : MonoBehaviour
     private Collider[] ColliderBuffer = new Collider[5];
     private ObjectPool m_ObjectPool;
     private float m_TravelledDistance;
+    public TrailRenderer LR;
     public void InitializeProjectile(ProjectileData ProjectileData, Vector3 Pos, Quaternion Dir)
     {
         m_ProjectileData = ProjectileData;
@@ -16,6 +17,7 @@ public class Projectile : MonoBehaviour
         gameObject.SetActive(true);
         m_TravelledDistance = 0f;
         transform.localScale = Vector3.one * ProjectileData.projectileRadius / 1.7f;
+        LR.Clear();
     }
     private void Start()
     {
