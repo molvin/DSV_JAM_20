@@ -31,9 +31,9 @@ public class Projectile : MonoBehaviour
             {
                 for (int i = 0; i < CollidersHit; i++)
                 {
-                    if (ColliderBuffer[i].TryGetComponent(out IDestructible DestructibleThing))
+                    if (ColliderBuffer[i].TryGetComponent(out IDamageable damageable))
                     {
-                        DestructibleThing.DestroyThis();
+                        damageable.TakeDamage(projectileData.damage);
                     }
                 }
                 gameObject.SetActive(false);
@@ -42,7 +42,7 @@ public class Projectile : MonoBehaviour
         
         else
         {
-            transform.Translate(transform.forward * projectileData.travelSpeed * Time.deltaTime);
+            transform.Translate(Vector3.forward * projectileData.travelSpeed * Time.deltaTime);
 
         }
 

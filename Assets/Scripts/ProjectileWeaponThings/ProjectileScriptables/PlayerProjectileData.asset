@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PlayerProjectileData
   m_EditorClassIdentifier: 
   projectileRadius: 1
-  travelSpeed: 6
+  travelSpeed: 60
   explosionRadius: 2
   firingCooldown: 0.3
   targetLayers:

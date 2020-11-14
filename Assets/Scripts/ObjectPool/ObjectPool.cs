@@ -36,8 +36,15 @@ public class ObjectPool : MonoBehaviour
     private void Start()
     {
         m_projectileVFXPool.InitializePool(transform);
-        m_EnemyPool.InitializePool(transform);
+        for (int i = 0; i < m_projectileVFXPool.poolSize; i++)
+        {
+            if (m_projectileVFXPool.poolArray[i].TryGetComponent<Projectile>(out Projectile Projectile))
+                Projectile.objectPool = this;
+            else
+                Debug.LogWarning("Enemy spawned without weapon");
+        }
 
+        m_EnemyPool.InitializePool(transform);
         for (int i = 0; i < m_EnemyPool.poolSize; i++)
         {
             if (m_EnemyPool.poolArray[i].TryGetComponent<Weapon>(out Weapon weapon))
@@ -47,6 +54,7 @@ public class ObjectPool : MonoBehaviour
         }
     
         m_ImpactVFXPool.InitializePool(transform);
+        m_EnemyExplosionVFXPool.InitializePool(transform);
     }
     public GameObject rentObject(ObjectType ObjectType)
     {       
