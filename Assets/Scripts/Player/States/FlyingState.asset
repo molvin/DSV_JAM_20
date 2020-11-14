@@ -28,6 +28,6 @@ MonoBehaviour:
   PitchUpSpeed: 90
   PitchDownSpeed: 35
   RollSpeed: 170
-  YawSpeed: 60
+  YawSpeed: 25
   Speed: 0
   StrafeSpeed: 0

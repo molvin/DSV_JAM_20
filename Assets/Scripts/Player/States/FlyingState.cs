@@ -32,7 +32,7 @@ public class FlyingState : PlayerState
     {
         Player.Velocity = transform.forward;
     }
-
+        
     public override void StateUpdate()
     {
         //Input

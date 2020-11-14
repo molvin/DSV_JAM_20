@@ -7,7 +7,7 @@ public class EnemyWeapon : Weapon
     private void Update()
     {
         Vector3 playerDir = Player.Instance.transform.position - transform.position;
-        int hit = Physics.RaycastNonAlloc(transform.position, playerDir, PlayerHit, FiringRange, m_projectileData.targetLayers);
+        int hit = Physics.RaycastNonAlloc(transform.position, playerDir, PlayerHit, FiringRange, m_MainProjectileData.targetLayers);
         if (hit > 0 && firingCooldownTime < Time.time)
         {
             transform.parent.rotation = Quaternion.LookRotation(playerDir);

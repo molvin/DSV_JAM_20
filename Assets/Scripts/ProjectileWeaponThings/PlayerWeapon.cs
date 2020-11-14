@@ -5,12 +5,15 @@ using UnityEngine;
 public class PlayerWeapon : Weapon
 {
     private const string k_FireString = "Fire1";
-
+    private const string k_SwitchWeaponString = "SwitchWeapon";
+    private ProjectileData m_CurrentWeapon;
+    private ProjectileData m_SecondaryWeapon;
     void Update()
     {
-        if (Input.GetButton(k_FireString) && firingCooldownTime < Time.time)
+        if (Input.GetButtonDown(k_FireString) && firingCooldownTime < Time.time)
         {
             FireProjectile(transform.forward, transform.position);
         }
+
     }
 }
