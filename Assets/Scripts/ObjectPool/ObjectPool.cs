@@ -5,10 +5,11 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    public static ObjectPool Instance;
     [Serializable] private class Pool
     {
         [HideInInspector] public GameObject[] poolArray;
-        public int poolSize;
+        public int poolSize = 10;
         public GameObject prefab;
 
         public void InitializePool(Transform parent)
@@ -19,10 +20,14 @@ public class ObjectPool : MonoBehaviour
             prefab.SetActive(false);
         }
     }
-    [SerializeField] private Pool m_projectileVFXPool;
+    [SerializeField] private Pool m_projectilePool;
     [SerializeField] private Pool m_EnemyPool;
+    [Header("VFX")]
     [SerializeField] private Pool m_ImpactVFXPool;
     [SerializeField] private Pool m_EnemyExplosionVFXPool;
+    [Header("SFX")]
+    [SerializeField] private Pool m_ImpactSFXPool;
+    [SerializeField] private Pool m_EnemyExplosionSFXPool;
 
     public enum ObjectType
     {
@@ -30,24 +35,28 @@ public class ObjectPool : MonoBehaviour
         ImpactVFX,
         EnemyExplosionVFX,
         Enemy,
+        ImpactSFX,
+        EnemyDeathSFX,
     }
-
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+    }
 
     private void Start()
     {
-        m_projectileVFXPool.InitializePool(transform);
-        m_EnemyPool.InitializePool(transform);
+        m_projectilePool.InitializePool(transform);
 
-        for (int i = 0; i < m_EnemyPool.poolSize; i++)
-        {
-            if (m_EnemyPool.poolArray[i].TryGetComponent<Weapon>(out Weapon weapon))
-                weapon.m_objectPool = this;
-            else
-                Debug.LogWarning("Enemy spawned without weapon");
-        }
-    
+
+        m_EnemyPool.InitializePool(transform);
         m_ImpactVFXPool.InitializePool(transform);
         m_EnemyExplosionVFXPool.InitializePool(transform);
+
+        m_EnemyExplosionSFXPool.InitializePool(transform);
+        m_ImpactSFXPool.InitializePool(transform);
     }
     public GameObject rentObject(ObjectType ObjectType)
     {       
@@ -56,20 +65,22 @@ public class ObjectPool : MonoBehaviour
             switch (targetPool)
             {
                 case ObjectType.ProjectileVFX:
-                    return m_projectileVFXPool.poolArray;
+                    return m_projectilePool.poolArray;
                 case ObjectType.Enemy:
                     return m_EnemyPool.poolArray;
                 case ObjectType.ImpactVFX:
                     return m_ImpactVFXPool.poolArray;
                 case ObjectType.EnemyExplosionVFX:
                     return m_EnemyExplosionVFXPool.poolArray;
+                case ObjectType.ImpactSFX:
+                    return m_ImpactSFXPool.poolArray;
+                case ObjectType.EnemyDeathSFX:
+                    return m_EnemyExplosionSFXPool.poolArray;
                 default:
                     Debug.LogWarning("No pool for this enum");
                     return null;
             }
         }
-
-
         GameObject[] selectedPoolArray = getPool(ObjectType);
 
         for (int i = 0; i < selectedPoolArray.Length; i++)
