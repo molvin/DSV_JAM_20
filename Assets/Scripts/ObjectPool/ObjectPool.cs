@@ -87,13 +87,15 @@ public class ObjectPool : MonoBehaviour
         {
             if(selectedPoolArray[i].gameObject.activeSelf == false)
             {
+                Debug.Log(selectedPoolArray[i].gameObject);
                 selectedPoolArray[i].gameObject.SetActive(true);
                 return selectedPoolArray[i].gameObject;
+                
             }
         }
 
         Debug.LogWarning("ObjectPool empty - Instantiating new asset outside array");
-
+        
         GameObject rentedObject = Instantiate(selectedPoolArray[0], transform);
         return rentedObject;
     }

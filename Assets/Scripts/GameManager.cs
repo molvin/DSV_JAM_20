@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -106,6 +107,13 @@ public class GameManager : MonoBehaviour
             Player.Instance.SetForward(forward);
             Player.Instance.gameObject.SetActive(true);
             Player.Instance.MovementMachine.TransitionTo<IdleState>();
+
+            BoidsManager.ClearBoids();
+            foreach (var s in SplineNoise3D.SplineLine)
+            {
+                BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
+            }
+
             t = 0.0f;
             while (t < 3)
             {
@@ -127,7 +135,15 @@ public class GameManager : MonoBehaviour
         StartCoroutine(VictoryCoroutine());
         IEnumerator VictoryCoroutine()
         {
+            float t = 0.0f;
 
+            while(t < 3.0f)
+            {
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            SceneManager.LoadScene(1);
             yield return null;
         }
     }

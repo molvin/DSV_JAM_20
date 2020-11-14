@@ -15,7 +15,7 @@ public class Projectile : MonoBehaviour
         transform.position = Pos;
         gameObject.SetActive(true);
         m_TravelledDistance = 0f;
-        transform.localScale = Vector3.one * ProjectileData.projectileRadius / 2.5f;
+        transform.localScale = Vector3.one * ProjectileData.projectileRadius / 1.7f;
     }
     private void Start()
     {
@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
             //Do the ExplosionVFX
             GameObject explosionVFXObject = m_ObjectPool.rentObject(ObjectPool.ObjectType.ImpactVFX);
             explosionVFXObject.transform.position = hit.point;
-            explosionVFXObject.transform.localScale = Vector3.one * m_ProjectileData.explosionRadius;
+            explosionVFXObject.transform.localScale = (Vector3.one * m_ProjectileData.explosionRadius)/1.1f ;
             explosionVFXObject.transform.rotation = Quaternion.LookRotation(hit.normal);
 
             GameObject explosionSFXObject = m_ObjectPool.rentObject(ObjectPool.ObjectType.ImpactSFX);

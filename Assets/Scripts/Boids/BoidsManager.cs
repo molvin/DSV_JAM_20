@@ -66,6 +66,14 @@ public class BoidsManager : MonoBehaviour
             Instance.Boids.Add(Boy);
         }
     }
+    public static void ClearBoids()
+    {
+        foreach(BoidComp b in Instance.Boids)
+        {
+            Destroy(b.gameObject);
+        }
+        Instance.Boids.Clear();
+    }
 
     public static void DeleteBoid(BoidComp Boy)
     {
@@ -76,7 +84,7 @@ public class BoidsManager : MonoBehaviour
         Instance.Boids.Remove(Boy);
         Rigidbody rb = Boy.gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
-        rb.velocity = Random.onUnitSphere * 3;
+        rb.velocity = Random.onUnitSphere * 15;
         Destroy(Boy);
     }
 
