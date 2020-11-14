@@ -30,7 +30,9 @@ public class PlayerWeapon : Weapon
         return BoidsManager.Instance.Boids.Where(b =>
         {
             Vector3 direction = b.transform.position - transform.position;
-            return Physics.Raycast(new Ray(transform.position, direction), direction.magnitude, Player.Instance.CollisionLayers) && Vector3.Dot(transform.forward, direction.normalized) > .98f;
+            return direction.magnitude < Player.Instance.AutoAimMaxDistance && 
+            Physics.Raycast(new Ray(transform.position, direction), direction.magnitude, Player.Instance.CollisionLayers) && 
+            Vector3.Dot(transform.forward, direction.normalized) > Player.Instance.AutoAimAngle;
         }).OrderBy(b => Vector3.Distance(b.transform.position, transform.position)).Select(b => b.transform).FirstOrDefault();
     }
 }
