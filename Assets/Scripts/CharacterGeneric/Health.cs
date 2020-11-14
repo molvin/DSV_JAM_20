@@ -10,7 +10,6 @@ public class Health : MonoBehaviour, IDamageable
         Debug.Log(damage);
         health -= damage;
         if (health >= 0)
-            Debug.Log("kill");
-            
+            gameObject.SetActive(false);
     }
 }
