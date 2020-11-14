@@ -5,11 +5,13 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    [SerializeField] private ProjectileData m_projectileData;
-    [HideInInspector] public ObjectPool m_objectPool;
-    public void FireProjectile(Vector3 Dir)
+    [SerializeField] protected ProjectileData m_projectileData;
+    [HideInInspector]public ObjectPool m_objectPool;
+    protected float firingCooldownTime;
+    public void FireProjectile(Vector3 Dir, Vector3 Position)
     {
-        Projectile Projectile = m_objectPool.rentObject(ObjectPool.ObjectType.Projectile).GetComponent<Projectile>();
-        Projectile.InitializeProjectile(m_projectileData, transform.position, Quaternion.LookRotation(transform.forward));
+        Projectile Projectile = m_objectPool.rentObject(ObjectPool.ObjectType.ProjectileVFX).GetComponent<Projectile>();
+        Projectile.InitializeProjectile(m_projectileData, Position, Quaternion.LookRotation(Dir));
+        firingCooldownTime = Time.time + m_projectileData.firingCooldown;
     }
 }

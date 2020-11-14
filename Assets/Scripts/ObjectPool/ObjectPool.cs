@@ -19,21 +19,23 @@ public class ObjectPool : MonoBehaviour
             prefab.SetActive(false);
         }
     }
-    [SerializeField] private Pool m_projectilePool;
+    [SerializeField] private Pool m_projectileVFXPool;
     [SerializeField] private Pool m_EnemyPool;
-    [SerializeField] private Pool m_VFXPool;
+    [SerializeField] private Pool m_ImpactVFXPool;
+    [SerializeField] private Pool m_EnemyExplosionVFXPool;
 
     public enum ObjectType
     {
-        Projectile,
-        Vfx,
+        ProjectileVFX,
+        ImpactVFX,
+        EnemyExplosionVFX,
         Enemy,
     }
 
 
     private void Start()
     {
-        m_projectilePool.InitializePool(transform);
+        m_projectileVFXPool.InitializePool(transform);
         m_EnemyPool.InitializePool(transform);
 
         for (int i = 0; i < m_EnemyPool.poolSize; i++)
@@ -44,7 +46,7 @@ public class ObjectPool : MonoBehaviour
                 Debug.LogWarning("Enemy spawned without weapon");
         }
     
-        m_VFXPool.InitializePool(transform);
+        m_ImpactVFXPool.InitializePool(transform);
     }
     public GameObject rentObject(ObjectType ObjectType)
     {       
@@ -52,12 +54,14 @@ public class ObjectPool : MonoBehaviour
         {
             switch (targetPool)
             {
-                case ObjectType.Projectile:
-                    return m_projectilePool.poolArray;
+                case ObjectType.ProjectileVFX:
+                    return m_projectileVFXPool.poolArray;
                 case ObjectType.Enemy:
                     return m_EnemyPool.poolArray;
-                case ObjectType.Vfx:
-                    return m_VFXPool.poolArray;
+                case ObjectType.ImpactVFX:
+                    return m_ImpactVFXPool.poolArray;
+                case ObjectType.EnemyExplosionVFX:
+                    return m_EnemyExplosionVFXPool.poolArray;
                 default:
                     Debug.LogWarning("No pool for this enum");
                     return null;
