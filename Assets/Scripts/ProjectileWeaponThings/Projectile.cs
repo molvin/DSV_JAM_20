@@ -14,7 +14,6 @@ public class Projectile : MonoBehaviour
         transform.rotation = Dir;
         transform.position = Pos;
         gameObject.SetActive(true);
-        objectPool = ObjectPool;
     }
     private void Update()
     {
