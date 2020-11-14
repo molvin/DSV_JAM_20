@@ -919,10 +919,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68d68e6039b0a1848b1e7fceb21c13e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NumberOfBoidsToSpawn: 100
+  NumberOfBoidsToSpawn: 300
   BoidPrefab: {fileID: 5204904453722656312, guid: 78c7952c19b37634a914555bc0478d1d,
     type: 3}
   SpawnRadius: 50
+  Player: {fileID: 2010153599}
   Boids: []
 --- !u!4 &1728433449
 Transform:

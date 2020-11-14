@@ -4,22 +4,20 @@ using UnityEngine;
 
 public class BoidsManager : MonoBehaviour
 {
-    public int NumberOfBoidsToSpawn;
     public GameObject BoidPrefab;
-    public float SpawnRadius;
-    public StubPlayer Player;
-
     public List<Boid> Boids = new List<Boid>();
-
     public static BoidsManager Instance;
 
     private void Start()
     {
         Instance = this;
-        
-        for (int i = 0; i < NumberOfBoidsToSpawn; i++)
+    }
+
+    public static void Spawn(Vector3 Point, float SpawnRadius, int NumBoids)
+    {
+        for (int i = 0; i < NumBoids; i++)
         {
-            Boids.Add(Instantiate(BoidPrefab, Random.insideUnitSphere * SpawnRadius, Random.rotation).GetComponent<Boid>());
+            Instance.Boids.Add(Instantiate(Instance.BoidPrefab, Random.insideUnitSphere * SpawnRadius, Random.rotation).GetComponent<Boid>());
         }
     }
 }
