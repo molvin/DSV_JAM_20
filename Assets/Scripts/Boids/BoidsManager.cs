@@ -67,6 +67,12 @@ public class BoidsManager : MonoBehaviour
         }
     }
 
+    public static void DeleteBoid(BoidComp Boy)
+    {
+        Instance.Boids.Remove(Boy);
+        Destroy(Boy);
+    }
+
     public struct BoidData
     {
         public Vector3 Position;
