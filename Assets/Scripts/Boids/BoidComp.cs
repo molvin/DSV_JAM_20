@@ -26,6 +26,7 @@ public class BoidComp : MonoBehaviour
         Velocity = Random.onUnitSphere * Settings.MaxSpeed;
         WanderTarget = transform.position;
         Collider = GetComponent<SphereCollider>();
+        GetComponent<Health>().onDeath += () => BoidsManager.DeleteBoid(this);
     }
     public void UpdateBoy()
     {
