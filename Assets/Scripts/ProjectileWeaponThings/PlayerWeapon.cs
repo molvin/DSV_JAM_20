@@ -17,7 +17,7 @@ public class PlayerWeapon : Weapon
 
     }
 
-    Vector3 FindAutoAim()
+    public Vector3 FindAutoAim()
     {
         foreach (var b in BoidsManager.Instance.Boids)
         {
