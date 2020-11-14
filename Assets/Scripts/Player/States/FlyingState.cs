@@ -30,7 +30,7 @@ public class FlyingState : PlayerState
 
     public override void Enter()
     {
-        Player.Velocity = transform.forward;
+        Player.Velocity = Model.forward;
     }
         
     public override void StateUpdate()

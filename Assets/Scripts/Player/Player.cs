@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using StateKraft;
+using System;
 
 public class Player : MonoBehaviour
 {
@@ -38,4 +39,9 @@ public class Player : MonoBehaviour
         return hit;
     }
 
+    public void SetForward(Vector3 forward)
+    {
+        Model.forward = forward;
+        Velocity = forward;
+    }
 }
