@@ -66,6 +66,14 @@ public class BoidsManager : MonoBehaviour
             Instance.Boids.Add(Boy);
         }
     }
+    public static void ClearBoids()
+    {
+        foreach(BoidComp b in Instance.Boids)
+        {
+            Destroy(b.gameObject);
+        }
+        Instance.Boids.Clear();
+    }
 
     public static void DeleteBoid(BoidComp Boy)
     {
