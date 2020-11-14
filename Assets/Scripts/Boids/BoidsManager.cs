@@ -15,7 +15,6 @@ public class BoidsManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
-        Spawn(Vector3.zero, 50, 500);
     }
 
     private void Update()
@@ -58,11 +57,13 @@ public class BoidsManager : MonoBehaviour
         Buffer.Release();
     }
 
-    public static void Spawn(Vector3 Point, float SpawnRadius, int NumBoids)
+    public static void Spawn(Vector3 Point, float SpawnRadius, int NumBoids, Transform Target = null)
     {
         for (int i = 0; i < NumBoids; i++)
         {
-            Instance.Boids.Add(Instantiate(Instance.BoidPrefab, Random.insideUnitSphere * SpawnRadius, Random.rotation).GetComponent<BoidComp>());
+            BoidComp Boy = Instantiate(Instance.BoidPrefab, Point + Random.insideUnitSphere * SpawnRadius, Random.rotation).GetComponent<BoidComp>();
+            Boy.Target = Target;
+            Instance.Boids.Add(Boy);
         }
     }
 
