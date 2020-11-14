@@ -56,7 +56,8 @@ MonoBehaviour:
   m_ImpactVFXPool:
     poolArray: []
     poolSize: 40
-    prefab: {fileID: 29564231101600385, guid: 0a203ccd219f37347878561ef8c17b6b, type: 3}
+    prefab: {fileID: 3706591198412824189, guid: 4818641c134ab3c45bfa078cf4e3e35b,
+      type: 3}
   m_EnemyExplosionVFXPool:
     poolArray: []
     poolSize: 40
