@@ -87,7 +87,6 @@ public class ObjectPool : MonoBehaviour
         {
             if(selectedPoolArray[i].gameObject.activeSelf == false)
             {
-                Debug.Log(selectedPoolArray[i].gameObject);
                 selectedPoolArray[i].gameObject.SetActive(true);
                 return selectedPoolArray[i].gameObject;
                 
