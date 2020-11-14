@@ -70,7 +70,8 @@ public class BoidsManager : MonoBehaviour
     public static void DeleteBoid(BoidComp Boy)
     {
         Instance.Boids.Remove(Boy);
-        Destroy(Boy.gameObject);
+        Boy.gameObject.AddComponent<Rigidbody>().useGravity = false;
+        Destroy(Boy);
     }
 
     public struct BoidData
