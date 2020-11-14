@@ -17,7 +17,7 @@ public class BoidsManager : MonoBehaviour
     {
         for (int i = 0; i < NumBoids; i++)
         {
-            Instance.Boids.Add(Instantiate(Instance.BoidPrefab, Random.insideUnitSphere * SpawnRadius, Random.rotation).GetComponent<Boid>());
+            Instance.Boids.Add(Instantiate(Instance.BoidPrefab, Point + Random.insideUnitSphere * SpawnRadius, Random.rotation).GetComponent<Boid>());
         }
     }
 }

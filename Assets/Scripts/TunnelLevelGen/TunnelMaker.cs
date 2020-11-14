@@ -20,7 +20,7 @@ public class TunnelMaker : MonoBehaviour
     void Start()
     {
         SplineNoise3D.SplineLine = new List<SplineNoise3D.Spline>();
-        StartCoroutine(createLevelSLowLike(20, 0.6f, 0.4f));
+        //StartCoroutine(createLevelSLowLike(20, 0.6f, 0.4f));
         PCM.isoSurface = 10f;
     }
     public void makeSpline(int segmentCount, float sporadicFactor,float noiseScale)
