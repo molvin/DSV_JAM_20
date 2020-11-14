@@ -233,6 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e59b0787b111304e85daa9bbf6a8fa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StartButton: {fileID: 1877966565}
 --- !u!1 &1168761247
 GameObject:
   m_ObjectHideFlags: 0
@@ -690,9 +691,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Horizontal
-  m_VerticalAxis: Vertical
-  m_SubmitButton: Submit
+  m_HorizontalAxis: Cancel
+  m_VerticalAxis: Cancel
+  m_SubmitButton: Cancel
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
