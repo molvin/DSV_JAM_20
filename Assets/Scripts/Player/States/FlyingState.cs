@@ -6,7 +6,9 @@ public class FlyingState : PlayerState
 {
     [Header("Speed")]
     public float MaxSpeed;
+    public float BoostSpeed;
     public float BaseSpeed;
+    public float MinSpeed;
     [Header("Acceleration")]
     public float Acceleration;
     public float Deceleration;
@@ -16,7 +18,8 @@ public class FlyingState : PlayerState
     public float StrafeSmoothTime = 0.1f;
     public float StrafeDecelerationSmoothTime = 0.1f;
     [Header("Rotation")]
-    public float PitchSpeed;
+    public float PitchUpSpeed;
+    public float PitchDownSpeed;
     public float RollSpeed;
     public float YawSpeed;
     [Header("Current Speed")]
@@ -37,41 +40,34 @@ public class FlyingState : PlayerState
         float pitch = Input.GetAxisRaw("Pitch");
         float roll = Input.GetAxisRaw("Roll");
         float yaw = Input.GetAxisRaw("Yaw");
+        float maxSpeed = Input.GetButton("Boost") ? BoostSpeed : MaxSpeed;
+        Debug.Log(maxSpeed);
 
         //Acceleration
-        if(acceleration > Player.MinInput && Player.Velocity.magnitude < MaxSpeed)
+        if(acceleration > Player.MinInput && Player.Velocity.magnitude < maxSpeed)
         {
             Player.Velocity += acceleration * Acceleration * DeltaTime * Model.forward;
         }
-        else if(acceleration < -Player.MinInput && Player.Velocity.magnitude > BaseSpeed)
+        else if(acceleration < -Player.MinInput && Player.Velocity.magnitude > MinSpeed)
         {
             Player.Velocity += acceleration * Deceleration * DeltaTime * Model.forward;
         }
-        else if(Mathf.Abs(acceleration) < Player.MinInput)
+        else if(Mathf.Abs(acceleration) < Player.MinInput || Player.Velocity.magnitude > maxSpeed)
         {
-            Player.Velocity = Mathf.Lerp(Speed, BaseSpeed, SpeedLerp * DeltaTime) * Model.forward;
+            Player.Velocity = Vector3.Lerp(Player.Velocity, Model.forward * BaseSpeed, SpeedLerp * DeltaTime);
         }
 
         //Rotation
         if(Mathf.Abs(pitch) > Player.MinInput)
         {
-            Model.Rotate(Model.right, pitch * PitchSpeed * DeltaTime, Space.World);
-            Player.Velocity = Quaternion.AngleAxis(pitch * PitchSpeed * DeltaTime, Model.right) * Player.Velocity;
+            float speed = pitch > 0.0f ? PitchDownSpeed : PitchUpSpeed;
+            Model.Rotate(Model.right, pitch * speed * DeltaTime, Space.World);
+            Player.Velocity = Quaternion.AngleAxis(pitch * speed * DeltaTime, Model.right) * Player.Velocity;
         }
         if (Mathf.Abs(roll) > Player.MinInput)
         {
             Model.Rotate(Model.forward, roll * RollSpeed * DeltaTime, Space.World);
         }
-        float strafeVelocity = 0.0f;
-        if (Mathf.Abs(yaw) > Player.MinInput)
-        {
-
-        }
-        else
-        {
-
-        }
-
         PlayerPhysics.HitData hit = PlayerPhysics.PreventCollision(Player.Cast, ref Player.Velocity, transform, DeltaTime, 0.03f);
 
         Vector3 euler = Model.localEulerAngles;
@@ -83,9 +79,26 @@ public class FlyingState : PlayerState
         euler = Model.localEulerAngles;
         euler.z = modelRoll;
         Model.localEulerAngles = euler;
-
         //Movement
         transform.position += Player.Velocity * DeltaTime;
-        Debug.DrawRay(transform.position, Player.Velocity * 100.0f, Color.magenta);
+        Debug.DrawRay(transform.position, Player.Velocity, Color.magenta);
+
+        //Strafing
+        float strafeVelocity = 0.0f;
+        if (Mathf.Abs(yaw) > Player.MinInput)
+        {
+            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, MaxStrafeSpeed * yaw, ref strafeVelocity, StrafeSmoothTime, 10000.0f, DeltaTime);
+        }
+        else
+        {
+            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, 0.0f, ref strafeVelocity, StrafeDecelerationSmoothTime, 10000.0f, DeltaTime);
+        }
+
+        Vector3 velocity = Model.transform.right * StrafeSpeed;
+        hit = PlayerPhysics.PreventCollision(() => Player.Cast(velocity.normalized, 100000.0f), ref velocity, transform, DeltaTime, 0.03f);
+
+        transform.position += velocity * DeltaTime;
+        Debug.DrawRay(transform.position, velocity, Color.red);
+
     }
 }

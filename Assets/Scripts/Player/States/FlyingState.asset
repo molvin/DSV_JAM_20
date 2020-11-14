@@ -16,16 +16,18 @@ MonoBehaviour:
   _editor: {fileID: 0}
   Player: {fileID: 0}
   MaxSpeed: 30
-  BaseSpeed: 5
+  BoostSpeed: 80
+  BaseSpeed: 10
+  MinSpeed: 3
   Acceleration: 50
-  Deceleration: 5
-  SpeedLerp: 0.5
+  Deceleration: 25
+  SpeedLerp: 1
   MaxStrafeSpeed: 25
   StrafeSmoothTime: 0.1
-  StrafeDecelerationSmoothTime: 0.1
-  PitchSpeed: 80
+  StrafeDecelerationSmoothTime: 0.03
+  PitchUpSpeed: 150
+  PitchDownSpeed: 10
   RollSpeed: 170
   YawSpeed: 60
   Speed: 0
   StrafeSpeed: 0
-  Model: {fileID: 0}
