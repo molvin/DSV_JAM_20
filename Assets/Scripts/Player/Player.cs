@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
 {
     public static Player Instance;
 
+    [Header("Auto Aim")]
+    public float AutoAimAngle;
+    public float AutoAimMaxDistance;
+
     public StateMachine MovementMachine;
     public Transform Model;
     [Header("Collision")]

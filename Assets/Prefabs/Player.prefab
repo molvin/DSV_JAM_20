@@ -10445,6 +10445,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89e5dd4a460b29d43bf8e26f4124c046, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AutoAimAngle: 0.99
+  AutoAimMaxDistance: 16
   MovementMachine:
     _states:
     - {fileID: 11400000, guid: 6a1f12d1f0f4e444795aa8e867edb3a1, type: 2}
