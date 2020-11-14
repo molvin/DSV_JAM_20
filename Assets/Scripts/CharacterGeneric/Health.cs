@@ -1,10 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private float health = 100;
+    public Action onDeath;
     private float currentHealth;
     private void OnEnable()
     {
@@ -14,6 +16,6 @@ public class Health : MonoBehaviour, IDamageable
     {
         health -= damage;
         if (health >= 0)
-            gameObject.SetActive(false);
+            onDeath?.Invoke();
     }
 }
