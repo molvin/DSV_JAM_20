@@ -372,6 +372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cd56c81d18f74a4489fccf10eeb91d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Holder: {fileID: 8229910773711223060}
   HealthImage: {fileID: 8229910773043520069}
   CrossHair:
   - {fileID: 1399664681075177747}

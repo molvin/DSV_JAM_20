@@ -82,6 +82,7 @@ public class FlyingState : PlayerState
         {
             float damage = Mathf.Lerp(MinDamage, MaxDamage, Mathf.Clamp01(hit.ImpactVelocity - MinBumpSpeed / (MaxBumpSpeed - MinBumpSpeed)));
             gameObject.GetComponent<Health>().TakeDamage(damage);
+            Player.ScratchSound.Play();
         }
         
 
