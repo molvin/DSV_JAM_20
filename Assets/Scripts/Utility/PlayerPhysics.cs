@@ -52,4 +52,5 @@ public static class PlayerPhysics
             SurfaceAngle = Vector3.Angle(Vector3.up, averageNormal);
         }
     } 
+
 }

@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class FlyingState : PlayerState
 {
+    [Header("Speed")]
     public float MaxSpeed;
     public float BaseSpeed;
-
+    [Header("Acceleration")]
     public float Acceleration;
     public float Deceleration;
     public float SpeedLerp;
-
+    [Header("Strafe")]
+    public float MaxStrafeSpeed = 10;
+    public float StrafeSmoothTime = 0.1f;
+    public float StrafeDecelerationSmoothTime = 0.1f;
+    [Header("Rotation")]
     public float PitchSpeed;
     public float RollSpeed;
     public float YawSpeed;
-
+    [Header("Current Speed")]
     public float Speed;
+    public float StrafeSpeed;
 
     public override void StateUpdate()
     {
@@ -48,12 +54,18 @@ public class FlyingState : PlayerState
         {
             transform.Rotate(transform.forward, roll * RollSpeed * DeltaTime, Space.World);
         }
+        float strafeVelocity = 0.0f;
         if (Mathf.Abs(yaw) > Player.MinInput)
         {
-
+            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, Mathf.Sign(yaw) * MaxStrafeSpeed, ref strafeVelocity, StrafeSmoothTime, 10000.0f, DeltaTime);
+        }
+        else
+        {
+            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, 0.0f, ref strafeVelocity, StrafeDecelerationSmoothTime, 100000.0f, DeltaTime);
         }
 
+
         //Movement
-        transform.position += transform.forward * Speed * DeltaTime;
+        transform.position += ((transform.forward * Speed) + (transform.right * StrafeSpeed)) * DeltaTime;
     }
 }
