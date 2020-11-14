@@ -5,7 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] private ProjectileData projectileData;
-    Collider[] ColliderBuffer = new Collider[5];
+    private Collider[] ColliderBuffer = new Collider[5];
 
     public void InitializeProjectile(ProjectileData ProjectileData, Vector3 Pos, Quaternion Dir)
     {
@@ -16,22 +16,33 @@ public class Projectile : MonoBehaviour
     }
     private void Update()
     {
-        transform.Translate(transform.forward * projectileData.travelSpeed * Time.deltaTime);
-        int CollidersHit = Physics.OverlapSphereNonAlloc(transform.position, projectileData.impactRadius, ColliderBuffer, projectileData.targetLayers);
-        if (CollidersHit > 0)
+        Physics.SphereCast(transform.position, projectileData.projectileRadius, transform.forward, out RaycastHit hit, projectileData.travelSpeed * Time.deltaTime, projectileData.targetLayers);
+        if(hit.transform != null)
         {
-            for(int i = 0; i < CollidersHit; i++)
+            int CollidersHit = Physics.OverlapSphereNonAlloc(transform.position, projectileData.explosionRadius, ColliderBuffer, projectileData.targetLayers);
+            if (CollidersHit > 0)
             {
-                if(ColliderBuffer[i].TryGetComponent(out IDestructible DestructibleThing)){
-                    DestructibleThing.DestroyThis();
+                for (int i = 0; i < CollidersHit; i++)
+                {
+                    if (ColliderBuffer[i].TryGetComponent(out IDestructible DestructibleThing))
+                    {
+                        DestructibleThing.DestroyThis();
+                    }
                 }
+                gameObject.SetActive(false);
             }
-            gameObject.SetActive(false);
         }
+        
+        else
+        {
+            transform.Translate(transform.forward * projectileData.travelSpeed * Time.deltaTime);
+
+        }
+
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, projectileData.impactRadius);
+        Gizmos.DrawWireSphere(transform.position, projectileData.explosionRadius);
     }
 }
