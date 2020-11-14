@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     public void FireProjectile(Vector3 Dir, Vector3 Position)
     {
         Projectile Projectile = m_objectPool.rentObject(ObjectPool.ObjectType.ProjectileVFX).GetComponent<Projectile>();
-        Projectile.InitializeProjectile(m_projectileData, Position, Quaternion.LookRotation(Dir), m_objectPool);
+        Projectile.InitializeProjectile(m_projectileData, Position, Quaternion.LookRotation(Dir));
         firingCooldownTime = Time.time + m_projectileData.firingCooldown;
     }
 }

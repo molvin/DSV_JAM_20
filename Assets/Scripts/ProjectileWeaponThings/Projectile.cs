@@ -8,7 +8,7 @@ public class Projectile : MonoBehaviour
     private Collider[] ColliderBuffer = new Collider[5];
     [HideInInspector] public ObjectPool objectPool;
 
-    public void InitializeProjectile(ProjectileData ProjectileData, Vector3 Pos, Quaternion Dir, ObjectPool ObjectPool)
+    public void InitializeProjectile(ProjectileData ProjectileData, Vector3 Pos, Quaternion Dir)
     {
         projectileData = ProjectileData;
         transform.rotation = Dir;
@@ -31,9 +31,9 @@ public class Projectile : MonoBehaviour
             {
                 for (int i = 0; i < CollidersHit; i++)
                 {
-                    if (ColliderBuffer[i].TryGetComponent(out IDestructible DestructibleThing))
+                    if (ColliderBuffer[i].TryGetComponent(out IDamageable damageable))
                     {
-                        DestructibleThing.DestroyThis();
+                        damageable.TakeDamage(projectileData.damage);
                     }
                 }
                 gameObject.SetActive(false);
