@@ -11,6 +11,7 @@ public class TunnelMaker : MonoBehaviour
     public float InternalCaveNoise = 0.02f;
     public float HoleSize = 3f;
     public List<Color> colors = new List<Color>();
+    public System.Action<int> Progress;
     private void OnDrawGizmos()
     {
         for (int i = 0; i < SplineNoise3D.SplineLine.Count - 1; i++)
@@ -58,6 +59,7 @@ public class TunnelMaker : MonoBehaviour
             color = color % colors.Count;
             a.color = colors[color];
             addOne(SplineNoise3D.SplineLine[i].pos);
+            Progress?.Invoke(i);
             yield return null;
         }
     }
