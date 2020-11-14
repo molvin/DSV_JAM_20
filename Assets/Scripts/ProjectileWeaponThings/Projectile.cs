@@ -15,6 +15,7 @@ public class Projectile : MonoBehaviour
         transform.position = Pos;
         gameObject.SetActive(true);
         m_TravelledDistance = 0f;
+        transform.localScale = Vector3.one * ProjectileData.projectileRadius / 2.5f;
     }
     private void Start()
     {
@@ -25,10 +26,14 @@ public class Projectile : MonoBehaviour
         Physics.SphereCast(transform.position, m_ProjectileData.projectileRadius, transform.forward, out RaycastHit hit, m_ProjectileData.travelSpeed * Time.deltaTime, m_ProjectileData.targetLayers);
         if(hit.transform != null)
         {
-            //Do the explosionThing
-            GameObject explosionObject = m_ObjectPool.rentObject(ObjectPool.ObjectType.ImpactVFX);
-            explosionObject.transform.position = hit.point;
-            explosionObject.transform.localScale = Vector3.one * m_ProjectileData.explosionRadius;
+            //Do the ExplosionVFX
+            GameObject explosionVFXObject = m_ObjectPool.rentObject(ObjectPool.ObjectType.ImpactVFX);
+            explosionVFXObject.transform.position = hit.point;
+            explosionVFXObject.transform.localScale = Vector3.one * m_ProjectileData.explosionRadius;
+            explosionVFXObject.transform.rotation = Quaternion.LookRotation(hit.normal);
+
+            GameObject explosionSFXObject = m_ObjectPool.rentObject(ObjectPool.ObjectType.ImpactSFX);
+            explosionSFXObject.transform.position = hit.point;
 
             //deal le dmg
             int CollidersHit = Physics.OverlapSphereNonAlloc(hit.point, m_ProjectileData.explosionRadius, ColliderBuffer, m_ProjectileData.targetLayers);
@@ -41,8 +46,9 @@ public class Projectile : MonoBehaviour
                         damageable.TakeDamage(m_ProjectileData.damage);
                     }
                 }
-                gameObject.SetActive(false);
+               
             }
+            gameObject.SetActive(false);
         }
         
         else
@@ -57,10 +63,10 @@ public class Projectile : MonoBehaviour
         }
 
     }
-
+    
 
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(transform.position, m_ProjectileData.explosionRadius);
+        Gizmos.DrawWireSphere(transform.position, m_ProjectileData.projectileRadius);
     }
 }

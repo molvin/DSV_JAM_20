@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 1029039322501226818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 3, y: 3, z: 3}
   m_Children:
   - {fileID: 7757188706178732640}
   m_Father: {fileID: 0}
@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cde7396d8b320041b8d414b34715727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectileData: {fileID: 11400000, guid: 87e451356d516e34f9ce86bc423cb6b7, type: 2}
+  m_ProjectileData: {fileID: 11400000, guid: 87e451356d516e34f9ce86bc423cb6b7, type: 2}
 --- !u!1 &8493278913768540130
 GameObject:
   m_ObjectHideFlags: 0

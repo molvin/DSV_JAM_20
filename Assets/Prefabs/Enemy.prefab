@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8633647215568579524}
   - component: {fileID: 7411511505152100630}
   - component: {fileID: 4714367800921079851}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: nozzle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,7 +103,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6606579401383127600}
   - component: {fileID: 3026183573907367082}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: WeaponHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,13 +147,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8774097378372309790}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8774097378372309790
 Transform:
   m_ObjectHideFlags: 0
@@ -183,7 +183,7 @@ GameObject:
   - component: {fileID: 7987005754257695415}
   - component: {fileID: 6481192029176296996}
   - component: {fileID: 9017167246408209216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: BoxGraphics
   m_TagString: Untagged
   m_Icon: {fileID: 0}
