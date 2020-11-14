@@ -55,7 +55,7 @@ public class GameManager : MonoBehaviour
 
             foreach (var s in SplineNoise3D.SplineLine)
             {
-                BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment);
+                BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
             }
 
             Vector3 forward = (SplineNoise3D.SplineLine[1].pos - SplineNoise3D.SplineLine[0].pos).normalized;

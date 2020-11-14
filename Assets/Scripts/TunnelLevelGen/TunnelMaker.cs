@@ -6,7 +6,10 @@ public class TunnelMaker : MonoBehaviour
 {
     public PointCloudManager PCM;
     public GameObject lights;
-    public float CaveAmount = 4f;
+    public float CaveWallAmountW = 4f;
+    public float InternalCaveAmount = 10f;
+    public float InternalCaveNoise = 0.02f;
+    public float HoleSize = 3f;
     public List<Color> colors = new List<Color>();
     private void OnDrawGizmos()
     {
@@ -61,14 +64,13 @@ public class TunnelMaker : MonoBehaviour
 
     public float SuperNoise(Vector3 point)
     {
-        float holesize = 2f;
         //distance along spline X
-        float dist = SplineNoise3D.HoleNoise(point)/holesize;
+        float dist = SplineNoise3D.HoleNoise(point) / HoleSize;
         if (dist > 1f) dist = 1f;
-        Perlin3D.scale = 0.2f;
-        float caveWalls = SplineNoise3D.SplineNoise(point) + Perlin3D.PerlinNoise3D(point) * CaveAmount;
-        if (caveWalls < 10f) caveWalls = 0f;
-        return (caveWalls + Perlin3D.PerlinNoise3D(point) * 12f) * dist;
+        Perlin3D.scale = InternalCaveNoise;
+        float caveWalls = SplineNoise3D.SplineNoise(point) + Perlin3D.PerlinNoise3D(point) * CaveWallAmountW;
+        if (caveWalls < 6f) caveWalls = 0f;
+        return (caveWalls + Perlin3D.PerlinNoise3D(point) * InternalCaveAmount) * dist;
     }
 
 }

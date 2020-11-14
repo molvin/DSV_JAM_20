@@ -70,6 +70,9 @@ public class BoidsManager : MonoBehaviour
     public static void DeleteBoid(BoidComp Boy)
     {
         Instance.Boids.Remove(Boy);
+        Rigidbody rb = Boy.gameObject.AddComponent<Rigidbody>();
+        rb.useGravity = false;
+        rb.velocity = Random.onUnitSphere * 3;
         Destroy(Boy);
     }
 
