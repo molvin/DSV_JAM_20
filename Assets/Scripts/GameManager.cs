@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(buildLevel());
         IEnumerator buildLevel()
         {
+            PlayerGUI.Instance.Disable();
             LoadingUI.SetActive(true);
             LoadingText.gameObject.SetActive(true);
             ProgressText.gameObject.SetActive(true);
@@ -66,6 +67,7 @@ public class GameManager : MonoBehaviour
             Player.Instance.transform.position = SplineNoise3D.SplineHole[0].pos + forward * 2f;
             Player.Instance.SetForward(forward);
             Player.Instance.gameObject.SetActive(true);
+            PlayerGUI.Instance.Enable();
 
             LoadingText.gameObject.SetActive(false);
             ProgressText.gameObject.SetActive(false);
@@ -144,6 +146,7 @@ public class GameManager : MonoBehaviour
             }
 
             BoidsManager.ClearBoids();
+            PlayerGUI.Instance.Disable();
             SceneManager.LoadScene(1);
             yield return null;
         }

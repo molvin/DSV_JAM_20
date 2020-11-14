@@ -5,9 +5,16 @@ using UnityEngine.UI;
 
 public class PlayerGUI : MonoBehaviour
 {
+    public static PlayerGUI Instance;
+    public GameObject Holder;
     public Image HealthImage;
     public Image[] CrossHair;
     public float SmoothTime;
+
+    private void Start()
+    {
+        Instance = this;
+    }
 
     private void Update()
     {
@@ -32,6 +39,14 @@ public class PlayerGUI : MonoBehaviour
             }
         }
 
+    }
+    public void Disable()
+    {
+        Holder.SetActive(false);
+    }
+    public void Enable()
+    {
+        Holder.SetActive(true);
     }
 
 
