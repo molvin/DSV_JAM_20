@@ -9,8 +9,6 @@ public class Boid : MonoBehaviour
     public float Radius;
     public float Acceleration;
 
-    public StubPlayer Player;
-
     public Vector3 Velocity = Vector3.zero;
     private SteeringBehaviors Steering;
     private SphereCollider Collider;
@@ -40,7 +38,7 @@ public class Boid : MonoBehaviour
     {
         SetFrameNeighbours();
 
-        Vector3 SteeringForce = Steering.Seek(BoidsManager.Instance.Player.transform.position) * Seek;
+        Vector3 SteeringForce = Steering.Pursuit(Player.Instance) * Seek;
         SteeringForce += Steering.Wander() * Wander;
         SteeringForce += Steering.Separation() * Separation;
         SteeringForce += Steering.Alignment() * Alightment;

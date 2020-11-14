@@ -66,7 +66,7 @@ public class SteeringBehaviors
 
         return Vector3.zero;
     }
-    public Vector3 Pursuit(StubPlayer Evader)
+    public Vector3 Pursuit(Player Evader)
     {
         Vector3 ToEvader = Evader.transform.position - Boid.transform.position;
 
