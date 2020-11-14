@@ -5,8 +5,6 @@ using UnityEngine;
 public class TunnelMaker : MonoBehaviour
 {
     public PointCloudManager PCM;
-    public int segments = 100;
-    int currentindex = 0;
     private void OnDrawGizmos()
     {
         for (int i = 0; i < SplineNoise3D.SplineLine.Count - 1; i++)
@@ -22,15 +20,15 @@ public class TunnelMaker : MonoBehaviour
     void Start()
     {
         SplineNoise3D.SplineLine = new List<SplineNoise3D.Spline>();
-        makeSpline();
+        StartCoroutine(createLevelSLowLike(20, 0.6f, 0.4f));
         PCM.isoSurface = 10f;
     }
-    public void makeSpline(float sporadicFactor,float noiseScale)
+    public void makeSpline(int segmentCount, float sporadicFactor,float noiseScale)
     {
         Perlin3D.scale = noiseScale;
         Vector3 direction = Vector3.right;
         Vector3 currentPos = Vector3.one * 20;
-        for(int i=0;i<segments;i++)
+        for(int i=0;i< segmentCount; i++)
         {
             float x = Perlin3D.PerlinNoise3D(currentPos + Vector3.right);
             float y = Perlin3D.PerlinNoise3D(currentPos + Vector3.up);
@@ -46,11 +44,10 @@ public class TunnelMaker : MonoBehaviour
     }
     public IEnumerator createLevelSLowLike(int segmentCount, float sporadicFactor, float noiseScale)
     {
-        makeSpline(sporadicFactor, noiseScale);
-        for (int i=0;i< segmentCount; i++)
+        makeSpline(segmentCount, sporadicFactor, noiseScale);
+        for (int i = 0 ; i < segmentCount; i++)
         {
-            currentindex++;
-            addOne(SplineNoise3D.SplineLine[currentindex].pos);
+            addOne(SplineNoise3D.SplineLine[i].pos);
             yield return null;
         }
     }
