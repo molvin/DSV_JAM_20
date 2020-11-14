@@ -14,6 +14,7 @@ public class BoidComp : MonoBehaviour
     public int NumPerceivedFlockmates;
 
     public Transform Target;
+    public Transform Mesh;
 
     private Vector3 Velocity;
     private Vector3 WanderTarget;
@@ -27,6 +28,14 @@ public class BoidComp : MonoBehaviour
         WanderTarget = transform.position;
         Collider = GetComponent<SphereCollider>();
         GetComponent<Health>().onDeath += () => BoidsManager.DeleteBoid(this);
+    }
+    private void LateUpdate()
+    {
+        if (Velocity.magnitude > 0.00001f)
+        {
+            transform.forward = Velocity;
+        }
+        Mesh.transform.RotateAround(Mesh.transform.forward, 3 * Time.deltaTime);
     }
     public void UpdateBoy()
     {

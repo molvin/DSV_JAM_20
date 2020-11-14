@@ -323,7 +323,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 4781957674433533081, guid: 84823baaf98d39048a3f137671c0523f,
     type: 3}
-  Segments: 30
+  Segments: 5
   Sporadic: 0.9
   NoiseScale: 0.8
   BoidsPerSegment: 3
