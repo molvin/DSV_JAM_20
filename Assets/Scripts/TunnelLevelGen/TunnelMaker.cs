@@ -47,7 +47,7 @@ public class TunnelMaker : MonoBehaviour
     public IEnumerator createLevelSLowLike(int segmentCount, float sporadicFactor, float noiseScale)
     {
         makeSpline(sporadicFactor, noiseScale);
-        for (int i=0;i<segments;i++)
+        for (int i=0;i< segmentCount; i++)
         {
             currentindex++;
             addOne(SplineNoise3D.SplineLine[currentindex].pos);
