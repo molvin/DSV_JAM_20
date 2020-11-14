@@ -85,6 +85,9 @@ public class BoidsManager : MonoBehaviour
         Rigidbody rb = Boy.gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
         rb.velocity = Random.onUnitSphere * 15;
+        Vector3 dir = (Boy.transform.position - Player.Instance.transform.position).normalized;
+        rb.AddForce(dir * 1000.0f);
+        Boy.gameObject.layer = 2;
         Destroy(Boy);
     }
 

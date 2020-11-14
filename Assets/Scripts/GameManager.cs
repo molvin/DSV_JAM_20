@@ -143,6 +143,7 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
 
+            BoidsManager.ClearBoids();
             SceneManager.LoadScene(1);
             yield return null;
         }
