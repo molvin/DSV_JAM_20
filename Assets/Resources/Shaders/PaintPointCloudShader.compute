@@ -1,0 +1,23 @@
+﻿// Each #kernel tells which function to compile; you can have many kernels
+#pragma kernel CSMain
+float BrushAmount;
+float BrushRadius;
+float3 BrushPosition;
+float3 WorldPos;
+RWStructuredBuffer<float> PointCloud;
+const static int3 size = int3(8, 8, 8);
+
+int Index(uint3 id) {
+	return id.x + ((size.x + 1) * id.y) + ((size.x + 1) * (size.y + 1) * id.z);
+}
+
+float Amount(uint3 id, float3 pos, float brushRadius, float amount){
+	float3 globalpos = WorldPos + id.xyz;
+	float distance = length(globalpos - pos);
+	return clamp((brushRadius - distance) / brushRadius, 0, 1) * amount;
+}
+
+[numthreads(9,9,9)]
+void CSMain (uint3 id : SV_DispatchThreadID){
+	PointCloud[Index(id.xyz)] += Amount(id.xyz, BrushPosition, BrushRadius, BrushAmount);
+}
