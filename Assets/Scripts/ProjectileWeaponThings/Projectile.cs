@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    private ProjectileData projectileData;
+    [SerializeField] private ProjectileData projectileData;
     Collider[] ColliderBuffer = new Collider[5];
 
     public void InitializeProjectile(ProjectileData ProjectileData, Vector3 Pos, Quaternion Dir)
@@ -17,12 +17,12 @@ public class Projectile : MonoBehaviour
     private void Update()
     {
         transform.Translate(transform.forward * projectileData.travelSpeed * Time.deltaTime);
-        Physics.OverlapSphereNonAlloc(transform.position, projectileData.impactRadius, ColliderBuffer, projectileData.targetLayers);
-        if (ColliderBuffer.Length > 0)
+        int CollidersHit = Physics.OverlapSphereNonAlloc(transform.position, projectileData.impactRadius, ColliderBuffer, projectileData.targetLayers);
+        if (CollidersHit > 0)
         {
-            for(int i = 0; i < ColliderBuffer.Length; i++)
+            for(int i = 0; i < CollidersHit; i++)
             {
-                if(ColliderBuffer[i].TryGetComponent<IDestructible>(out IDestructible DestructibleThing)){
+                if(ColliderBuffer[i].TryGetComponent(out IDestructible DestructibleThing)){
                     DestructibleThing.DestroyThis();
                 }
             }

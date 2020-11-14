@@ -3,8 +3,7 @@
 [CreateAssetMenu(fileName ="ProjectileData")]
 public class ProjectileData : ScriptableObject
 {
-    public float bulletRadius;
-    public float bulletlength;
+    public float projectileRadius;
     public float travelSpeed;
     public float impactRadius;
 
