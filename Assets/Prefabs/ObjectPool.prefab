@@ -45,29 +45,29 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_projectilePool:
     poolArray: []
-    poolSize: 10
+    poolSize: 40
     prefab: {fileID: 1029039322501226818, guid: 56029fb108badb54e884118199da6a82,
       type: 3}
   m_EnemyPool:
     poolArray: []
-    poolSize: 5
+    poolSize: 40
     prefab: {fileID: 3937567333899436436, guid: 12273a34d879c9d4593d44574a74403e,
       type: 3}
   m_ImpactVFXPool:
     poolArray: []
-    poolSize: 5
+    poolSize: 40
     prefab: {fileID: 29564231101600385, guid: 0a203ccd219f37347878561ef8c17b6b, type: 3}
   m_EnemyExplosionVFXPool:
     poolArray: []
-    poolSize: 5
+    poolSize: 40
     prefab: {fileID: 646031734632812527, guid: c7a4d8a66e77eb746925c881f3e0b209, type: 3}
   m_ImpactSFXPool:
     poolArray: []
-    poolSize: 10
+    poolSize: 40
     prefab: {fileID: 5464739351357850560, guid: f2051b7e8d442bd44a6f17c22c159344,
       type: 3}
   m_EnemyExplosionSFXPool:
     poolArray: []
-    poolSize: 10
+    poolSize: 40
     prefab: {fileID: 8762006204406045398, guid: 50107a700fa69b14191f98a70ecdd716,
       type: 3}
