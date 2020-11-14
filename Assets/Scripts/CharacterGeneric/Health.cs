@@ -7,10 +7,8 @@ public class Health : MonoBehaviour, IDamageable
     [SerializeField] private float health = 100;
     public void TakeDamage(float damage)
     {
-        Debug.Log(damage);
         health -= damage;
         if (health >= 0)
-            Debug.Log("kill");
-            
+            gameObject.SetActive(false);
     }
 }

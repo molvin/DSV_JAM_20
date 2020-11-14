@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class ObjectPool : MonoBehaviour
 {
+    public static ObjectPool Instance;
     [Serializable] private class Pool
     {
         [HideInInspector] public GameObject[] poolArray;
@@ -31,28 +32,23 @@ public class ObjectPool : MonoBehaviour
         EnemyExplosionVFX,
         Enemy,
     }
-
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+    }
 
     private void Start()
     {
+
+
+   
         m_projectileVFXPool.InitializePool(transform);
-        for (int i = 0; i < m_projectileVFXPool.poolSize; i++)
-        {
-            if (m_projectileVFXPool.poolArray[i].TryGetComponent<Projectile>(out Projectile Projectile))
-                Projectile.objectPool = this;
-            else
-                Debug.LogWarning("Enemy spawned without weapon");
-        }
+
 
         m_EnemyPool.InitializePool(transform);
-        for (int i = 0; i < m_EnemyPool.poolSize; i++)
-        {
-            if (m_EnemyPool.poolArray[i].TryGetComponent<Weapon>(out Weapon weapon))
-                weapon.m_objectPool = this;
-            else
-                Debug.LogWarning("Enemy spawned without weapon");
-        }
-    
         m_ImpactVFXPool.InitializePool(transform);
         m_EnemyExplosionVFXPool.InitializePool(transform);
     }
