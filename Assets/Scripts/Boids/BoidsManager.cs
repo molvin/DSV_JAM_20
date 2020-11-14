@@ -7,6 +7,7 @@ public class BoidsManager : MonoBehaviour
     public GameObject BoidPrefab;
     public List<BoidComp> Boids = new List<BoidComp>();
     public static BoidsManager Instance;
+    public Material ScuffMaterial;
 
     public int ThreadGroupSize = 1024;
     public BoidSettings Settings;
@@ -88,6 +89,10 @@ public class BoidsManager : MonoBehaviour
         Vector3 dir = (Boy.transform.position - Player.Instance.transform.position).normalized;
         rb.AddForce(dir * 1000.0f);
         Boy.gameObject.layer = 2;
+        Boy.GetComponentInChildren<Animator>().enabled = false;
+        foreach(var b in Boy.GetComponentsInChildren<MeshRenderer>()) {
+            b.material = Instance.ScuffMaterial;
+        }
         Destroy(Boy);
     }
 
