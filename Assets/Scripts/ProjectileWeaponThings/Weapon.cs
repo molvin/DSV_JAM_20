@@ -5,7 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    [SerializeField] protected ProjectileData m_projectileData;
+    [SerializeField] protected ProjectileData m_MainProjectileData;
     protected ObjectPool m_objectPool;
     protected float firingCooldownTime;
     private ParticleSystem m_MuzzleFlash;
@@ -19,8 +19,8 @@ public class Weapon : MonoBehaviour
     public void FireProjectile(Vector3 Dir, Vector3 Position)
     {
         Projectile Projectile = ObjectPool.Instance.rentObject(ObjectPool.ObjectType.ProjectileVFX).GetComponent<Projectile>();
-        Projectile.InitializeProjectile(m_projectileData, Position, Quaternion.LookRotation(Dir));
-        firingCooldownTime = Time.time + m_projectileData.firingCooldown;
+        Projectile.InitializeProjectile(m_MainProjectileData, Position, Quaternion.LookRotation(Dir));
+        firingCooldownTime = Time.time + m_MainProjectileData.firingCooldown;
         m_MuzzleFlash.Play();
         m_AudioSource.Play();
     }
