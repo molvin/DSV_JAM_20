@@ -53,17 +53,17 @@ public class GameManager : MonoBehaviour
             Tunnel.Progress += (i) => { ProgressText.text = $"Loaded {i+1}/{Segments} Segments"; };
             yield return Tunnel.createLevelSLowLike(Segments, Sporadic, NoiseScale);
 
-            SplineNoise3D.Spline end = SplineNoise3D.SplineLine[SplineNoise3D.SplineLine.Count - 1];
+            SplineNoise3D.Spline end = SplineNoise3D.SplineHole[SplineNoise3D.SplineHole.Count - 1];
             GameObject go = Instantiate(VictoryZonePrefab, end.pos, Quaternion.identity);
             go.transform.localScale = new Vector3(end.radius, end.radius, end.radius);
 
-            foreach (var s in SplineNoise3D.SplineLine)
+            foreach (var s in SplineNoise3D.SplineHole)
             {
                 BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
             }
 
-            Vector3 forward = (SplineNoise3D.SplineLine[1].pos - SplineNoise3D.SplineLine[0].pos).normalized;
-            Player.Instance.transform.position = SplineNoise3D.SplineLine[0].pos + forward * 2f;
+            Vector3 forward = (SplineNoise3D.SplineHole[1].pos - SplineNoise3D.SplineHole[0].pos).normalized;
+            Player.Instance.transform.position = SplineNoise3D.SplineHole[0].pos + forward * 2f;
             Player.Instance.SetForward(forward);
             Player.Instance.gameObject.SetActive(true);
 
@@ -102,14 +102,14 @@ public class GameManager : MonoBehaviour
                 yield return null;
             }
 
-            Vector3 forward = (SplineNoise3D.SplineLine[1].pos - SplineNoise3D.SplineLine[0].pos).normalized;
-            Player.Instance.transform.position = SplineNoise3D.SplineLine[0].pos + forward * 2f;
+            Vector3 forward = (SplineNoise3D.SplineHole[1].pos - SplineNoise3D.SplineHole[0].pos).normalized;
+            Player.Instance.transform.position = SplineNoise3D.SplineHole[0].pos + forward * 2f;
             Player.Instance.SetForward(forward);
             Player.Instance.gameObject.SetActive(true);
             Player.Instance.MovementMachine.TransitionTo<IdleState>();
 
             BoidsManager.ClearBoids();
-            foreach (var s in SplineNoise3D.SplineLine)
+            foreach (var s in SplineNoise3D.SplineHole)
             {
                 BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
             }
