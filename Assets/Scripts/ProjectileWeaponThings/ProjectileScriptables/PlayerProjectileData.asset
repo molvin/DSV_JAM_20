@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileRadius: 0.5
   travelSpeed: 60
-  explosionRadius: 2
+  explosionRadius: 0.5
   firingCooldown: 0.3
   damage: 100
   maxTravelDistance: 200
