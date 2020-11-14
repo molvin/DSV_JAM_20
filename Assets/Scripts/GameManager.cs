@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject LoadingUI;
     public Image FadeImage;
     public TextMeshProUGUI LoadingText;
+    public TextMeshProUGUI ProgressText;
     public GameObject VictoryUI;
     public float FadeOutTime;
     public float FadeInTime;
@@ -30,6 +31,7 @@ public class GameManager : MonoBehaviour
     }
     public void Start()
     {
+        
         Player.Instance.GetComponent<Health>().onDeath += GameOver;
         LoadLevel();
         StartGame();
@@ -42,10 +44,12 @@ public class GameManager : MonoBehaviour
         {
             LoadingUI.SetActive(true);
             LoadingText.gameObject.SetActive(true);
+            ProgressText.gameObject.SetActive(true);
             FadeImage.color = FadeImage.color.withAlpha(1.0f);
 
             Player.Instance.gameObject.SetActive(false);
-
+            ProgressText.text = $"Loaded 0/{Segments} Segments";
+            Tunnel.Progress += (i) => { ProgressText.text = $"Loaded {i+1}/{Segments} Segments"; };
             yield return Tunnel.createLevelSLowLike(Segments, Sporadic, NoiseScale);
 
             SplineNoise3D.Spline end = SplineNoise3D.SplineLine[SplineNoise3D.SplineLine.Count - 1];
@@ -57,14 +61,14 @@ public class GameManager : MonoBehaviour
                 BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
             }
 
-
             Vector3 forward = (SplineNoise3D.SplineLine[1].pos - SplineNoise3D.SplineLine[0].pos).normalized;
-            Debug.Log(forward);
             Player.Instance.transform.position = SplineNoise3D.SplineLine[0].pos + forward * 2f;
             Player.Instance.SetForward(forward);
             Player.Instance.gameObject.SetActive(true);
 
             LoadingText.gameObject.SetActive(false);
+            ProgressText.gameObject.SetActive(false);
+
             float t = 0.0f;
             while(t < FadeOutTime)
             {
@@ -84,6 +88,34 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("You died");
+        Player.Instance.gameObject.SetActive(false);
+
+        StartCoroutine(DieRoutine());
+        IEnumerator DieRoutine()
+        {
+            float t = 0.0f;
+            while(t < 3)
+            {
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+
+            Vector3 forward = (SplineNoise3D.SplineLine[1].pos - SplineNoise3D.SplineLine[0].pos).normalized;
+            Player.Instance.transform.position = SplineNoise3D.SplineLine[0].pos + forward * 2f;
+            Player.Instance.SetForward(forward);
+            Player.Instance.gameObject.SetActive(true);
+            Player.Instance.MovementMachine.TransitionTo<IdleState>();
+            t = 0.0f;
+            while (t < 3)
+            {
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+            Player.Instance.MovementMachine.TransitionTo<FlyingState>();
+
+        }
+
 
     }
 

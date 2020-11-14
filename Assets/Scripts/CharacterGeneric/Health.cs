@@ -14,8 +14,17 @@ public class Health : MonoBehaviour, IDamageable
     }
     public void TakeDamage(float damage)
     {
-        health -= damage;
-        if (health >= 0)
+        currentHealth -= damage;
+        if (currentHealth <= 0)
             onDeath?.Invoke();
     }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.O))
+            TakeDamage(5.0f);
+    }
+
+    public float CurrentHealth => currentHealth;
+    public float MaxHealth => health;
 }
