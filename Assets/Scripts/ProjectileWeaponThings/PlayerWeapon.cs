@@ -10,7 +10,7 @@ public class PlayerWeapon : Weapon
     private ProjectileData m_SecondaryWeapon;
     void Update()
     {
-        if (Input.GetButtonDown(k_FireString) && firingCooldownTime < Time.time)
+        if ((Input.GetButton(k_FireString) || Input.GetAxisRaw("Shoot") > 0.6f) && firingCooldownTime < Time.time)
         {
             FireProjectile(transform.forward, transform.position);
         }
