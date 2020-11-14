@@ -1242,6 +1242,21 @@ PrefabInstance:
       propertyPath: ShapeModule.radiusThickness
       value: 1.0000
       objectReference: {fileID: 0}
+    - target: {fileID: 1720704729407009160, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720704729407009160, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1720704729407009160, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4683621360479929673, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: m_Name
