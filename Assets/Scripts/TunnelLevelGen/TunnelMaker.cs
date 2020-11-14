@@ -5,7 +5,9 @@ using UnityEngine;
 public class TunnelMaker : MonoBehaviour
 {
     public PointCloudManager PCM;
+    public GameObject lights;
     public float CaveAmount = 4f;
+    public List<Color> colors = new List<Color>();
     private void OnDrawGizmos()
     {
         for (int i = 0; i < SplineNoise3D.SplineLine.Count - 1; i++)
@@ -43,10 +45,15 @@ public class TunnelMaker : MonoBehaviour
     }
     public IEnumerator createLevelSLowLike(int segmentCount, float sporadicFactor, float noiseScale)
     {
+        int color = 0;
         SplineNoise3D.SplineLine = new List<SplineNoise3D.Spline>();
         makeSpline(segmentCount, sporadicFactor, noiseScale);
         for (int i = 0 ; i < segmentCount; i++)
         {
+            Light a = Instantiate(lights, SplineNoise3D.SplineHole[i].pos, Quaternion.identity, PCM.transform).GetComponent<Light>();
+            color++;
+            color = color % colors.Count;
+            a.color = colors[color];
             addOne(SplineNoise3D.SplineLine[i].pos);
             yield return null;
         }
