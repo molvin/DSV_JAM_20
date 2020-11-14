@@ -32,7 +32,7 @@ public class TunnelMaker : MonoBehaviour
     {
         Perlin3D.scale = noiseScale;
         Vector3 direction = Vector3.right;
-        Vector3 currentPos = Vector3.one * 40;
+        Vector3 currentPos = Vector3.one * Random.Range(40, 9999);
         for(int i=0;i< segmentCount; i++)
         {
             float x = 0.1f;
