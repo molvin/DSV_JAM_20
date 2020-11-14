@@ -7,6 +7,8 @@ public class ProjectileData : ScriptableObject
     public float travelSpeed;
     public float explosionRadius;
     public float firingCooldown = 1f;
+    public float damage = 100;
+    public float maxTravelDistance = 200;
 
     public LayerMask targetLayers;
 }

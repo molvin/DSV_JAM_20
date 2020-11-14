@@ -17,11 +17,11 @@ public class PlayerCamera : MonoBehaviour
     }
     private void LateUpdate()
     {
-        Vector3 targetPoint = Player.transform.TransformPoint(Offset);
+        Vector3 targetPoint = Player.Model.TransformPoint(Offset);
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPoint, ref velocity, SmoothTime);
 
-        transform.LookAt(Player.transform.TransformPoint(LookAtOffset));
+        transform.LookAt(Player.Model.TransformPoint(LookAtOffset));
     }
 
 }
