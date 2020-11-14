@@ -12,8 +12,21 @@ public class PlayerWeapon : Weapon
     {
         if (Input.GetButtonDown(k_FireString) && firingCooldownTime < Time.time)
         {
-            FireProjectile(transform.forward, transform.position);
+            FireProjectile(FindAutoAim(), transform.position);
         }
 
+    }
+
+    Vector3 FindAutoAim()
+    {
+        foreach (var b in BoidsManager.Instance.Boids)
+        {
+            Vector3 direction = b.transform.position - transform.position;
+            if (Vector3.Dot(transform.forward, direction.normalized) > .95)
+            {
+                return direction;
+            }
+        }
+        return transform.forward;
     }
 }
