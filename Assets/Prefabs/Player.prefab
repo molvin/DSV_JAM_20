@@ -10098,7 +10098,7 @@ Transform:
   m_GameObject: {fileID: 2636062471673616768}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 4.18}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0.1}
   m_Children:
   - {fileID: 8021627615949836865}
   - {fileID: 187431918498828829}
@@ -10389,6 +10389,31 @@ PrefabInstance:
       propertyPath: m_Name
       value: RightEngineThruster
       objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: ShapeModule.angle
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 154.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e028494f8787ad408904bb9de36a68c, type: 3}
 --- !u!4 &187431918498828829 stripped
@@ -10553,6 +10578,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: LeftEngineThruster
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: ShapeModule.angle
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: ShapeModule.radius.value
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: EmissionModule.rateOverTime.scalar
+      value: 154.05
+      objectReference: {fileID: 0}
+    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e028494f8787ad408904bb9de36a68c, type: 3}
