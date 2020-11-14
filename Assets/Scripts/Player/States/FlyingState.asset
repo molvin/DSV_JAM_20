@@ -17,8 +17,6 @@ MonoBehaviour:
   Player: {fileID: 0}
   MaxSpeed: 5
   BoostSpeed: 10
-  BaseSpeed: 5
-  MinSpeed: 5
   Acceleration: 50
   Deceleration: 25
   SpeedLerp: 1
@@ -31,3 +29,7 @@ MonoBehaviour:
   YawSpeed: 25
   Speed: 0
   StrafeSpeed: 0
+  MinDamage: 15
+  MaxDamage: 70
+  MinBumpSpeed: 1
+  MaxBumpSpeed: 10

@@ -23,6 +23,11 @@ public class FlyingState : PlayerState
     [Header("Current Speed")]
     public float Speed;
     public float StrafeSpeed;
+    [Header("Bump Damage")]
+    public float MinDamage;
+    public float MaxDamage;
+    public float MinBumpSpeed;
+    public float MaxBumpSpeed;
 
     private Transform Model => Player.Model;
 
@@ -68,6 +73,12 @@ public class FlyingState : PlayerState
         }
 
         PlayerPhysics.HitData hit = PlayerPhysics.PreventCollision(Player.Cast, ref Player.Velocity, transform, DeltaTime, 0.03f);
+        if(hit.Hit)
+        {
+            float damage = Mathf.Lerp(MinDamage, MaxDamage, Mathf.Clamp01(hit.ImpactVelocity - MinBumpSpeed / (MaxBumpSpeed - MinBumpSpeed)));
+            gameObject.GetComponent<Health>().TakeDamage(damage);
+        }
+        
 
         Vector3 euler = Model.localEulerAngles;
         float modelRoll = euler.z;

@@ -59,7 +59,6 @@ public class GameManager : MonoBehaviour
             }
 
             Vector3 forward = (SplineNoise3D.SplineLine[1].pos - SplineNoise3D.SplineLine[0].pos).normalized;
-            Debug.Log(forward);
             Player.Instance.transform.position = SplineNoise3D.SplineLine[0].pos + forward * 2f;
             Player.Instance.SetForward(forward);
             Player.Instance.gameObject.SetActive(true);
@@ -84,7 +83,24 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        Debug.Log("You died");
+        Player.Instance.gameObject.SetActive(false);
 
+        StartCoroutine(DieRoutine());
+        IEnumerator DieRoutine()
+        {
+            float t = 0.0f;
+            while(t < FadeInTime)
+            {
+                t += Time.unscaledDeltaTime;
+                yield return null;
+            }
+        }
+
+        Vector3 forward = (SplineNoise3D.SplineLine[1].pos - SplineNoise3D.SplineLine[0].pos).normalized;
+        Player.Instance.transform.position = SplineNoise3D.SplineLine[0].pos + forward * 2f;
+        Player.Instance.SetForward(forward);
+        Player.Instance.gameObject.SetActive(true);
     }
 
     public void Win()
