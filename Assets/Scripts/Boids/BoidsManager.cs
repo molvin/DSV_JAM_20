@@ -77,6 +77,10 @@ public class BoidsManager : MonoBehaviour
 
     public static void DeleteBoid(BoidComp Boy)
     {
+        if (!Instance.Boids.Contains(Boy))
+        {
+            return;
+        }
         Instance.Boids.Remove(Boy);
         Rigidbody rb = Boy.gameObject.AddComponent<Rigidbody>();
         rb.useGravity = false;
