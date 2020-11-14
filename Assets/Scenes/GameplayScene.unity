@@ -468,6 +468,11 @@ PrefabInstance:
       propertyPath: m_BackGroundColor.b
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4781957674433533060, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: AutoAimAngle
+      value: 0.999
+      objectReference: {fileID: 0}
     - target: {fileID: 4781957674433533081, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: m_Name
