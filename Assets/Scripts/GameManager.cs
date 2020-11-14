@@ -6,6 +6,8 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public static GameManager Instance;
+
     public GameObject PlayerPrefab;
     public int Segments;
     public float Sporadic;
@@ -22,7 +24,10 @@ public class GameManager : MonoBehaviour
     public float FadeOutTime;
     public float FadeInTime;
 
-
+    private void Awake()
+    {
+        Instance = this;
+    }
     public void Start()
     {
         Player.Instance.GetComponent<Health>().onDeath += GameOver;

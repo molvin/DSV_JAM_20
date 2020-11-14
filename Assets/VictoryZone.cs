@@ -8,7 +8,7 @@ public class VictoryZone : MonoBehaviour
     {
         if(other.gameObject.GetComponent<Player>())
         {
-            GameManager.Win();
+            GameManager.Instance.Win();
         }
     }
 }
