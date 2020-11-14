@@ -10205,7 +10205,7 @@ MonoBehaviour:
   LookAtOffset: {x: 0, y: 0, z: 3}
   SmoothTime: 0.1
   Player: {fileID: 4781957674433533060}
-  followCamera: 0
+  followCamera: 1
 --- !u!1 &4781957674433533081
 GameObject:
   m_ObjectHideFlags: 0
@@ -10261,7 +10261,7 @@ MonoBehaviour:
   Collider: {fileID: 4781957674433533083}
   CollisionLayers:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 268435457
   MinInput: 0.3
   Velocity: {x: 0, y: 0, z: 0}
   TimeScale: 1
@@ -10343,7 +10343,7 @@ PrefabInstance:
     - target: {fileID: 106251342421492721, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.2
       objectReference: {fileID: 0}
     - target: {fileID: 106251342421492721, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
@@ -10392,13 +10392,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.01
+      propertyPath: ShapeModule.angle
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
-      propertyPath: ShapeModule.angle
-      value: 0.01
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
@@ -10407,12 +10407,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 154.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
+      propertyPath: ShapeModule.radiusThickness
       value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -10523,7 +10518,7 @@ PrefabInstance:
     - target: {fileID: 106251342421492721, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.19
+      value: 3.1900003
       objectReference: {fileID: 0}
     - target: {fileID: 106251342421492721, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
@@ -10533,7 +10528,7 @@ PrefabInstance:
     - target: {fileID: 106251342421492721, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.200002
       objectReference: {fileID: 0}
     - target: {fileID: 106251342421492721, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
@@ -10582,13 +10577,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
-      propertyPath: InitialModule.startSize.scalar
-      value: 0.01
+      propertyPath: ShapeModule.angle
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
-      propertyPath: ShapeModule.angle
-      value: 0.01
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.02
       objectReference: {fileID: 0}
     - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
@@ -10597,12 +10592,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
         type: 3}
-      propertyPath: EmissionModule.rateOverTime.scalar
-      value: 154.05
-      objectReference: {fileID: 0}
-    - target: {fileID: 4230874599320626167, guid: 5e028494f8787ad408904bb9de36a68c,
-        type: 3}
-      propertyPath: InitialModule.startSpeed.scalar
+      propertyPath: ShapeModule.radiusThickness
       value: 0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []

@@ -20,4 +20,4 @@ MonoBehaviour:
   maxTravelDistance: 200
   targetLayers:
     serializedVersion: 2
-    m_Bits: 513
+    m_Bits: 268435969
