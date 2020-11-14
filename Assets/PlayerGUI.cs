@@ -19,7 +19,7 @@ public class PlayerGUI : MonoBehaviour
         PlayerWeapon[] weapons = Player.Instance.GetComponentsInChildren<PlayerWeapon>();
         for(int i = 0; i < 2; i++)
         {
-            Transform target = null;//weapons[i].FindAutoAimTarget();
+            Transform target = weapons[i].FindAutoAim();
             if(target == null)
             {
                 CrossHair[i].rectTransform.anchoredPosition = Vector2.zero;
