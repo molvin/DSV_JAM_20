@@ -76,4 +76,8 @@ public class PointCloudManager : MonoBehaviour
                     pointCloud[id] = initDef.Invoke(pos + new Vector3(x, y, z));
                 }
     }
+    public void OnDestroy()
+    {
+        marchShader.Release();
+    }
 }
