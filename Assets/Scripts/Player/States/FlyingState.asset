@@ -20,7 +20,12 @@ MonoBehaviour:
   Acceleration: 50
   Deceleration: 5
   SpeedLerp: 0.5
-  PitchSpeed: 120
+  MaxStrafeSpeed: 25
+  StrafeSmoothTime: 0.1
+  StrafeDecelerationSmoothTime: 0.1
+  PitchSpeed: 80
   RollSpeed: 170
   YawSpeed: 60
   Speed: 0
+  StrafeSpeed: 0
+  Model: {fileID: 0}

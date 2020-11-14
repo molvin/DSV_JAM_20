@@ -6,7 +6,7 @@ using StateKraft;
 public class Player : MonoBehaviour
 {
     public StateMachine MovementMachine;
-
+    public Transform Model;
     [Header("Collision")]
     public SphereCollider Collider;
     public LayerMask CollisionLayers;
@@ -27,11 +27,11 @@ public class Player : MonoBehaviour
 
     public RaycastHit Cast()
     {
-        return Cast(Velocity.normalized, 10000.0f);
+        return Cast(Velocity, 10000.0f);
     }
     public RaycastHit Cast(Vector3 direction, float distance)
     {
-        Physics.SphereCast(transform.position, Collider.radius, direction, out RaycastHit hit, distance, CollisionLayers);
+        Physics.SphereCast(transform.position + Collider.center, Collider.radius, direction, out RaycastHit hit, distance, CollisionLayers);
         return hit;
     }
 

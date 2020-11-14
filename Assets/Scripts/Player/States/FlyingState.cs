@@ -23,6 +23,13 @@ public class FlyingState : PlayerState
     public float Speed;
     public float StrafeSpeed;
 
+    private Transform Model => Player.Model;
+
+    public override void Enter()
+    {
+        Player.Velocity = transform.forward;
+    }
+
     public override void StateUpdate()
     {
         //Input
@@ -32,40 +39,53 @@ public class FlyingState : PlayerState
         float yaw = Input.GetAxisRaw("Yaw");
 
         //Acceleration
-        if(acceleration > Player.MinInput && Speed < MaxSpeed)
+        if(acceleration > Player.MinInput && Player.Velocity.magnitude < MaxSpeed)
         {
-            Speed += acceleration * Acceleration * DeltaTime;
+            Player.Velocity += acceleration * Acceleration * DeltaTime * Model.forward;
         }
-        else if(acceleration < -Player.MinInput && Speed > BaseSpeed)
+        else if(acceleration < -Player.MinInput && Player.Velocity.magnitude > BaseSpeed)
         {
-            Speed += acceleration * Deceleration * DeltaTime;
+            Player.Velocity += acceleration * Deceleration * DeltaTime * Model.forward;
         }
         else if(Mathf.Abs(acceleration) < Player.MinInput)
         {
-            Speed = Mathf.Lerp(Speed, BaseSpeed, SpeedLerp * DeltaTime);
+            Player.Velocity = Mathf.Lerp(Speed, BaseSpeed, SpeedLerp * DeltaTime) * Model.forward;
         }
 
         //Rotation
         if(Mathf.Abs(pitch) > Player.MinInput)
         {
-            transform.Rotate(transform.right, pitch * PitchSpeed * DeltaTime, Space.World);
+            Model.Rotate(Model.right, pitch * PitchSpeed * DeltaTime, Space.World);
+            Player.Velocity = Quaternion.AngleAxis(pitch * PitchSpeed * DeltaTime, Model.right) * Player.Velocity;
         }
         if (Mathf.Abs(roll) > Player.MinInput)
         {
-            transform.Rotate(transform.forward, roll * RollSpeed * DeltaTime, Space.World);
+            Model.Rotate(Model.forward, roll * RollSpeed * DeltaTime, Space.World);
         }
         float strafeVelocity = 0.0f;
         if (Mathf.Abs(yaw) > Player.MinInput)
         {
-            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, Mathf.Sign(yaw) * MaxStrafeSpeed, ref strafeVelocity, StrafeSmoothTime, 10000.0f, DeltaTime);
+
         }
         else
         {
-            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, 0.0f, ref strafeVelocity, StrafeDecelerationSmoothTime, 100000.0f, DeltaTime);
+
         }
 
+        PlayerPhysics.HitData hit = PlayerPhysics.PreventCollision(Player.Cast, ref Player.Velocity, transform, DeltaTime, 0.03f);
+
+        Vector3 euler = Model.localEulerAngles;
+        float modelRoll = euler.z;
+        euler.z = 0.0f;
+        Model.localEulerAngles = euler;
+
+        Model.transform.forward = Player.Velocity.normalized;
+        euler = Model.localEulerAngles;
+        euler.z = modelRoll;
+        Model.localEulerAngles = euler;
 
         //Movement
-        transform.position += ((transform.forward * Speed) + (transform.right * StrafeSpeed)) * DeltaTime;
+        transform.position += Player.Velocity * DeltaTime;
+        Debug.DrawRay(transform.position, Player.Velocity * 100.0f, Color.magenta);
     }
 }
