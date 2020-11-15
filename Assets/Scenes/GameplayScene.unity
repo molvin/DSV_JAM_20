@@ -148,6 +148,11 @@ PrefabInstance:
       propertyPath: InternalCaveAmountMinMax.x
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 2110781584976755345, guid: 2d2885f3020d6ea4c936d596b4315fe6,
+        type: 3}
+      propertyPath: InternalCaveNoiseMinMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2110781584976755346, guid: 2d2885f3020d6ea4c936d596b4315fe6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -818,7 +823,7 @@ PrefabInstance:
     - target: {fileID: 8229910773043520068, guid: 1cac3faa85f2141498d74658a8fe36a2,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 54.099976
+      value: 54.099854
       objectReference: {fileID: 0}
     - target: {fileID: 8229910773043520068, guid: 1cac3faa85f2141498d74658a8fe36a2,
         type: 3}
