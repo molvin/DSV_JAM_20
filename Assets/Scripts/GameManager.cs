@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
+using System;
 
 public class GameManager : MonoBehaviour
 {
@@ -27,6 +28,8 @@ public class GameManager : MonoBehaviour
     public float FadeOutTime;
     public float FadeInTime;
 
+    public Action OnStartedLoad;
+    
     private void Awake()
     {
         Instance = this;
@@ -36,11 +39,11 @@ public class GameManager : MonoBehaviour
         
         Player.Instance.GetComponent<Health>().onDeath += GameOver;
         LoadLevel();
-        StartGame();
     }
 
     public void LoadLevel()
     {
+        OnStartedLoad?.Invoke();
         StartCoroutine(buildLevel());
         IEnumerator buildLevel()
         {
@@ -88,13 +91,8 @@ public class GameManager : MonoBehaviour
             }
             LoadingUI.SetActive(false);
             Player.Instance.MovementMachine.TransitionTo<FlyingState>();
-
+          
         }
-    }
-
-    public void StartGame()
-    {
-
     }
 
     public void GameOver()
@@ -102,6 +100,7 @@ public class GameManager : MonoBehaviour
         Debug.Log("You died");
         Player.Instance.gameObject.SetActive(false);
 
+        OnStartedLoad?.Invoke();
         StartCoroutine(DieRoutine());
         IEnumerator DieRoutine()
         {

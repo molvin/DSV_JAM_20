@@ -11,7 +11,7 @@ public class PlayerWeapon : Weapon
     private ProjectileData m_SecondaryWeapon;
     void Update()
     {
-        if ((Input.GetButton(k_FireString) || Input.GetAxisRaw("Shoot") > 0.6f) && firingCooldownTime < Time.time)
+        if ((Input.GetButton(k_FireString) || Input.GetAxisRaw("Shoot") > 0.6f) && firingCooldownTime < Time.time && !PauseManager.Instance.gamePaused)
         {
             var direction = transform.forward;
             var tran = FindAutoAim();

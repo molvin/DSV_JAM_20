@@ -32,7 +32,7 @@ public class FlyingState : PlayerState
 
     private PostProcessVolume volume;
     private ChromaticAberration chromatic = null;
-
+    public int YcontrolMultiplier = 1;
     private Transform Model => Player.Model;
     bool hasBoosted;
     public override void Enter()
@@ -40,6 +40,7 @@ public class FlyingState : PlayerState
         volume = Camera.main.GetComponent<PostProcessVolume>();
         volume.profile.TryGetSettings(out chromatic);
         Player.Velocity = Model.forward;
+        YcontrolMultiplier = PlayerPrefs.GetInt("ControlsInvertedYMultiplier");
     }
         
     public override void StateUpdate()
