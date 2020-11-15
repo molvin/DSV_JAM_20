@@ -24,6 +24,10 @@ public class Player : MonoBehaviour
     public float TimeScale = 1.0f;
     public AudioSource ScratchSound;
 
+    public static Vector3 Forward => Instance.Model.forward;
+    public static Vector3 Up => Instance.Model.up;
+    public static Quaternion Rotation => Instance.Model.rotation;
+
     private void Start()
     {
         Instance = this;
