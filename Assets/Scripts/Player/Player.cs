@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public AudioSource ScratchSound;
     public AudioSource BoosterAudioSource;
 
+    public static Vector3 Position => Instance.transform.position;
     public static Vector3 Forward => Instance.Model.forward;
     public static Vector3 Up => Instance.Model.up;
     public static Quaternion Rotation => Instance.Model.rotation;
