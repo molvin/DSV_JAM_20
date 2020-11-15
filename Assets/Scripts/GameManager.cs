@@ -72,7 +72,8 @@ public class GameManager : MonoBehaviour
         float CaveWallAmountMax = Mathf.Lerp(CaveWallAmountMinMax.x, CaveWallAmountMinMax.y, Mathf.Clamp01(level + 0.5f));
         float CaveWallAmount = UnityEngine.Random.Range(CaveWallAmountMinMax.x, CaveWallAmountMax);
         //Ohno things in the way
-        float InternalCaveAmount = UnityEngine.Random.Range(InternalCaveAmountMinMax.x, InternalCaveAmountMinMax.y);
+        float InternalCaveAmountMax = Mathf.Lerp(InternalCaveAmountMinMax.x, InternalCaveAmountMinMax.y, Mathf.Clamp01(level + 0.5f));
+        float InternalCaveAmount = UnityEngine.Random.Range(InternalCaveAmountMinMax.x, InternalCaveAmountMax);
         //Ohno things in the way noise
         float InternalCaveNoise = UnityEngine.Random.Range(InternalCaveNoiseMinMax.x, InternalCaveNoiseMinMax.y);
         //Safety hole
@@ -95,7 +96,7 @@ public class GameManager : MonoBehaviour
             LevelText.text = $"Level {PersistentData.Instance.Level}";
             HighScoreText.text = $"Highscore: {PlayerPrefs.GetInt("Highscore", 0)}";
             Tunnel.Progress += (i) => { ProgressText.text = $"Loaded {i+1}/{Segments} Segments"; };
-            yield return Tunnel.createLevelSLowLike(Segments, Sporadic, NoiseScale);
+            yield return Tunnel.createLevelSLowLike(Segments, Sporadic, NoiseScale, CaveWallAmount, InternalCaveAmount, InternalCaveNoise, HoleSize);
 
             SplineNoise3D.Spline end = SplineNoise3D.SplineLine[SplineNoise3D.SplineLine.Count - 2];
             GameObject go = Instantiate(VictoryZonePrefab, end.pos, Quaternion.identity);
@@ -190,10 +191,10 @@ public class GameManager : MonoBehaviour
             t = 0.0f;
             PlayerGUI.Instance.Enable();
 
-            while (t < 3)
+            while (t < FadeOutTime)
             {
                 t += Time.unscaledDeltaTime;
-                FadeImage.color = Color.black.withAlpha(1f - t / 3.0f);
+                FadeImage.color = Color.black.withAlpha(1f - t / FadeOutTime);
                 yield return null;
             }
             FadeImage.color = Color.black.withAlpha(0.0f);
