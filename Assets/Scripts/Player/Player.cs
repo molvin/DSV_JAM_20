@@ -28,6 +28,7 @@ public class Player : MonoBehaviour
     public static Vector3 Forward => Instance.Model.forward;
     public static Vector3 Up => Instance.Model.up;
     public static Quaternion Rotation => Instance.Model.rotation;
+    public static FlyingState FlyingState => Instance.MovementMachine.GetState<FlyingState>();
 
     private void Start()
     {
