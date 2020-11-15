@@ -11,7 +11,7 @@ public class PersistentData : MonoBehaviour
     public int Score = 0;
     public int Multiplier = 1;
 
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -20,11 +20,6 @@ public class PersistentData : MonoBehaviour
         }
         else
             DestroyImmediate(gameObject);
-    }
-
-    private void Update()
-    {
-        Debug.Log($"Score: {Score} Multi: {Multiplier}");
     }
 
     public void IncreaseScore(int score)

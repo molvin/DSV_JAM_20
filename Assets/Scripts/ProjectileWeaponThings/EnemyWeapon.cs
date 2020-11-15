@@ -10,6 +10,11 @@ public class EnemyWeapon : Weapon
             return;
         }
 
+        if (Vector3.Dot(transform.up, Player.Up) < .8f)
+        {
+            return;
+        }
+
         Vector3 ToPlayer = Player.Position - transform.position;
         float LookAheadTime = ToPlayer.magnitude / (m_MainProjectileData.travelSpeed + Player.Instance.Velocity.magnitude);
         Vector3 PredictedPlayer = Player.Position + Player.Instance.Velocity * LookAheadTime;
@@ -20,7 +25,7 @@ public class EnemyWeapon : Weapon
             return;
         }
 
-        if (Vector3.Dot(transform.up, Player.Up) < .8f)
+        if (Vector3.Dot(PredictedPlayer.normalized, transform.forward) < .7f)
         {
             return;
         }
