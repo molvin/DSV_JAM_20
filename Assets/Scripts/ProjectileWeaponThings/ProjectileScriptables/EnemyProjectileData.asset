@@ -16,7 +16,7 @@ MonoBehaviour:
   travelSpeed: 12
   explosionRadius: 0.3
   firingCooldown: 2
-  damage: 30
+  damage: 20
   maxTravelDistance: 200
   targetLayers:
     serializedVersion: 2
