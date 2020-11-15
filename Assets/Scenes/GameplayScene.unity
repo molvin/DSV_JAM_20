@@ -143,6 +143,11 @@ PrefabInstance:
       propertyPath: InternalCaveAmountMinMax.y
       value: 17
       objectReference: {fileID: 0}
+    - target: {fileID: 2110781584976755345, guid: 2d2885f3020d6ea4c936d596b4315fe6,
+        type: 3}
+      propertyPath: InternalCaveAmountMinMax.x
+      value: 11
+      objectReference: {fileID: 0}
     - target: {fileID: 2110781584976755346, guid: 2d2885f3020d6ea4c936d596b4315fe6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -202,6 +207,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: GameManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2110781585391195234, guid: 2d2885f3020d6ea4c936d596b4315fe6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2885f3020d6ea4c936d596b4315fe6, type: 3}
@@ -934,27 +944,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4871563897138460761, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
-        type: 3}
-      propertyPath: m_PlayOnAwake
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4871563897138460761, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
-        type: 3}
-      propertyPath: OutputAudioMixerGroup
-      value: 
-      objectReference: {fileID: 5776105836973204066, guid: 6481f645e245e37429368f0c0fb49bd7,
-        type: 2}
-    - target: {fileID: 4871563897138460761, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
-        type: 3}
-      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4871563897138460761, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
-        type: 3}
-      propertyPath: DopplerLevel
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7974488298623619480, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
         type: 3}
       propertyPath: m_Name
@@ -1017,24 +1006,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31ca57e59f7a74b40b7642ebebd0caeb, type: 3}
---- !u!1 &2126661363 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7974488298623619480, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
-    type: 3}
-  m_PrefabInstance: {fileID: 2126661362}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2126661364
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2126661363}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 927e8433111130a458a4a5677fdf299d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &2506389210503153028
 PrefabInstance:
   m_ObjectHideFlags: 0
