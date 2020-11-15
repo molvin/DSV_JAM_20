@@ -71,8 +71,7 @@ public class GameManager : MonoBehaviour
         float CaveWallAmountMax = Mathf.Lerp(CaveWallAmountMinMax.x, CaveWallAmountMinMax.y, Mathf.Clamp01(level + 0.5f));
         float CaveWallAmount = UnityEngine.Random.Range(CaveWallAmountMinMax.x, CaveWallAmountMax);
         //Ohno things in the way
-        float InternalCaveAmountMax = Mathf.Lerp(InternalCaveAmountMinMax.x, InternalCaveAmountMinMax.y, Mathf.Clamp01(level + 0.2f));
-        float InternalCaveAmount = UnityEngine.Random.Range(InternalCaveAmountMinMax.x, InternalCaveAmountMax);
+        float InternalCaveAmount = UnityEngine.Random.Range(InternalCaveAmountMinMax.x, InternalCaveAmountMinMax.y);
         //Ohno things in the way noise
         float InternalCaveNoise = UnityEngine.Random.Range(InternalCaveNoiseMinMax.x, InternalCaveNoiseMinMax.y);
         //Safety hole
