@@ -6,10 +6,10 @@ public class TunnelMaker : MonoBehaviour
 {
     public PointCloudManager PCM;
     public GameObject lights;
-    public float CaveWallAmountW = 4f;
-    public float InternalCaveAmount = 10f;
-    public float InternalCaveNoise = 0.02f;
-    public float HoleSize = 3f;
+    private float _CaveWallAmount = 4f;
+    private float _InternalCaveAmount = 10f;
+    private float _InternalCaveNoise = 0.02f;
+    private float _HoleSize = 3f;
     public List<Color> colors = new List<Color>();
     public System.Action<int> Progress;
     private void OnDrawGizmos()
@@ -47,8 +47,12 @@ public class TunnelMaker : MonoBehaviour
     {
         PCM.InitializeIsoSurfaceSphere(paintPoint, 0.1f, SuperNoise);
     }
-    public IEnumerator createLevelSLowLike(int segmentCount, float sporadicFactor, float noiseScale)
+    public IEnumerator createLevelSLowLike(int segmentCount, float sporadicFactor, float noiseScale, float CaveWallAmount = 4f, float InternalCaveAmount = 10f, float InternalCaveNoise = 0.2f, float HoleSize = 3f)
     {
+        _HoleSize = HoleSize;
+        _CaveWallAmount = CaveWallAmount;
+        _InternalCaveAmount = InternalCaveAmount;
+        _InternalCaveNoise = InternalCaveNoise;
         int color = 0;
         SplineNoise3D.SplineHole = new List<SplineNoise3D.Spline>();
         SplineNoise3D.SplineLine = new List<SplineNoise3D.Spline>();
@@ -68,12 +72,12 @@ public class TunnelMaker : MonoBehaviour
     public float SuperNoise(Vector3 point)
     {
         //distance along spline X
-        float dist = SplineNoise3D.HoleNoise(point) / HoleSize;
+        float dist = SplineNoise3D.HoleNoise(point) / _HoleSize;
         if (dist > 1f) dist = 1f;
-        Perlin3D.scale = InternalCaveNoise;
-        float caveWalls = SplineNoise3D.SplineNoise(point) + Perlin3D.PerlinNoise3D(point) * CaveWallAmountW;
+        Perlin3D.scale = _InternalCaveNoise;
+        float caveWalls = SplineNoise3D.SplineNoise(point) + Perlin3D.PerlinNoise3D(point) * _CaveWallAmount;
         if (caveWalls < 6f) caveWalls = 0f;
-        return (caveWalls + Perlin3D.PerlinNoise3D(point) * InternalCaveAmount) * dist;
+        return (caveWalls + Perlin3D.PerlinNoise3D(point) * _InternalCaveAmount) * dist;
     }
 
 }
