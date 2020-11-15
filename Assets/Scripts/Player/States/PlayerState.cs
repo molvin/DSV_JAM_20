@@ -6,7 +6,7 @@ using StateKraft;
 public class PlayerState : State
 {
     [HideInInspector] public Player Player;
-    public float DeltaTime => Player.TimeScale * Time.unscaledDeltaTime;
+    public float DeltaTime => Player.TimeScale * Time.deltaTime;
 
     public override void Initialize(object owner)
     {
