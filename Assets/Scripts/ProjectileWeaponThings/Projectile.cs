@@ -16,7 +16,7 @@ public class Projectile : MonoBehaviour
         transform.position = Pos;
         gameObject.SetActive(true);
         m_TravelledDistance = 0f;
-        transform.localScale = Vector3.one * ProjectileData.projectileRadius / 1.7f;
+        transform.localScale = Vector3.one * ProjectileData.projectileRadius;
         LR.Clear();
     }
     private void Start()

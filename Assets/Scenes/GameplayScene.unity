@@ -1523,6 +1523,12 @@ PrefabInstance:
         type: 3}
       propertyPath: m_enemyProjectilePool.prefab
       value: 
+      objectReference: {fileID: 1029039322501226818, guid: aa0b5b7ca481eca45b41dd6937a2b0db,
+        type: 3}
+    - target: {fileID: 5477214289419243873, guid: 8dd6fc2d6f07cf74bb8f7679f21c7315,
+        type: 3}
+      propertyPath: m_projectilePool.prefab
+      value: 
       objectReference: {fileID: 1029039322501226818, guid: 56029fb108badb54e884118199da6a82,
         type: 3}
     - target: {fileID: 5477214289419243878, guid: 8dd6fc2d6f07cf74bb8f7679f21c7315,
