@@ -17,6 +17,8 @@ MonoBehaviour:
   Player: {fileID: 0}
   MaxSpeed: 5
   BoostSpeed: 10
+  MinFov: 70
+  MaxFov: 100
   Acceleration: 50
   Deceleration: 25
   SpeedLerp: 1
@@ -33,3 +35,4 @@ MonoBehaviour:
   MaxDamage: 70
   MinBumpSpeed: 1
   MaxBumpSpeed: 10
+  YcontrolMultiplier: 1

@@ -94,7 +94,7 @@ public class GameManager : MonoBehaviour
             Tunnel.Progress += (i) => { ProgressText.text = $"Loaded {i+1}/{Segments} Segments"; };
             yield return Tunnel.createLevelSLowLike(Segments, Sporadic, NoiseScale);
 
-            SplineNoise3D.Spline end = SplineNoise3D.SplineHole[SplineNoise3D.SplineHole.Count - 2];
+            SplineNoise3D.Spline end = SplineNoise3D.SplineLine[SplineNoise3D.SplineLine.Count - 2];
             GameObject go = Instantiate(VictoryZonePrefab, end.pos, Quaternion.identity);
             go.transform.localScale = new Vector3(end.radius, end.radius, end.radius);
 
