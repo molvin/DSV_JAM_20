@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.Rendering.PostProcessing;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
@@ -101,6 +101,9 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("You died");
         Player.Instance.gameObject.SetActive(false);
+        var volume = Camera.main.GetComponent<PostProcessVolume>();
+        volume.profile.TryGetSettings(out ChromaticAberration chromatic);
+        chromatic.intensity.value = 0.0f;
 
         StartCoroutine(DieRoutine());
         IEnumerator DieRoutine()

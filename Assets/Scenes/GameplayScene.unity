@@ -518,6 +518,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2131165883, guid: 84823baaf98d39048a3f137671c0523f, type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2131165883, guid: 84823baaf98d39048a3f137671c0523f, type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1043510039649128937, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: m_RenderAlignment
@@ -528,6 +536,22 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2688780251665163547, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2688780251665163547, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5776105836973204066, guid: 6481f645e245e37429368f0c0fb49bd7,
+        type: 2}
+    - target: {fileID: 2688780251665163547, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2741513662594916817, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: m_CastShadows
@@ -537,6 +561,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_ReceiveShadows
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934589156327856407, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3934589156327856407, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4131922187306856987, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
@@ -723,10 +757,30 @@ PrefabInstance:
       propertyPath: m_RenderAlignment
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7266164524178078199, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7266164524178078199, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7371512407255070544, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: m_StaticEditorFlags
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108981290811414892, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8108981290811414892, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8235520116048805593, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
@@ -2081,6 +2135,22 @@ PrefabInstance:
       propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4871563897138460761, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 5776105836973204066, guid: 6481f645e245e37429368f0c0fb49bd7,
+        type: 2}
+    - target: {fileID: 4871563897138460761, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
+        type: 3}
+      propertyPath: panLevelCustomCurve.m_Curve.Array.data[0].value
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4871563897138460761, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
+        type: 3}
+      propertyPath: DopplerLevel
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7974488298623619480, guid: 31ca57e59f7a74b40b7642ebebd0caeb,
         type: 3}
       propertyPath: m_Name
@@ -2223,6 +2293,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4825794414115296978, guid: 71e4fde23203ee94ca79f145ebea3885,
+        type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: -2959133062194941955, guid: 6481f645e245e37429368f0c0fb49bd7,
+        type: 2}
     - target: {fileID: 4825794414115296979, guid: 71e4fde23203ee94ca79f145ebea3885,
         type: 3}
       propertyPath: m_Name
