@@ -89,9 +89,9 @@ public class GameManager : MonoBehaviour
             FadeImage.color = Color.black.withAlpha(1.0f);
 
             Player.Instance.gameObject.SetActive(false);
-            ProgressText.text = $"Loaded 0/{Segments} Segments";
+            ProgressText.text = $"Generated 0/{Segments} Segments";
             LevelText.text = $"Level {PersistentData.Instance.Level}";
-            Tunnel.Progress += (i) => { ProgressText.text = $"Loaded {i+1}/{Segments} Segments"; };
+            Tunnel.Progress += (i) => { ProgressText.text = $"Generated {i+1}/{Segments} Segments"; };
             yield return Tunnel.createLevelSLowLike(Segments, Sporadic, NoiseScale);
 
             SplineNoise3D.Spline end = SplineNoise3D.SplineLine[SplineNoise3D.SplineLine.Count - 2];
@@ -101,10 +101,9 @@ public class GameManager : MonoBehaviour
             int count = 0;
             foreach (var s in SplineNoise3D.SplineHole)
             {
-                if(count > 2)
+                if(count > 2 && count < SplineNoise3D.SplineHole.Count - 2)
                 {
                     BoidsManager.Spawn(s.pos, s.radius * 0.5f, _BoidsPerSegment, Player.Instance.transform);
-
                 }
                 count++;
             }
