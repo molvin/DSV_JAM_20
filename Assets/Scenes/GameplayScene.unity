@@ -327,13 +327,13 @@ MonoBehaviour:
   VictoryZonePrefab: {fileID: 1098715309968941219, guid: 560535b1da5b3a3458d95a7872607974,
     type: 3}
   SegmentsMinMax: {x: 7, y: 20}
-  SporadicMinMax: {x: 0.1, y: 0.9}
-  NoiseScaleMinMax: {x: 0.1, y: 0.9}
-  BoidsPerSegmentMinMax: {x: 1, y: 5}
+  SporadicMinMax: {x: 0.2, y: 1}
+  NoiseScaleMinMax: {x: 0.2, y: 1}
+  BoidsPerSegmentMinMax: {x: 2, y: 6}
   CaveWallAmountMinMax: {x: 1, y: 5}
-  InternalCaveAmountMinMax: {x: 13, y: 17}
-  InternalCaveNoiseMinMax: {x: 0.1, y: 0.5}
-  HoleSizeMinMax: {x: 1, y: 3}
+  InternalCaveAmountMinMax: {x: 10, y: 20}
+  InternalCaveNoiseMinMax: {x: 0.2, y: 0.9}
+  HoleSizeMinMax: {x: 2, y: 4}
   LoadingUI: {fileID: 618845451}
   FadeImage: {fileID: 1357672903}
   LoadingText: {fileID: 1067851040}
@@ -1830,7 +1830,7 @@ MonoBehaviour:
   Prefab8X8: {fileID: 4167875488152516828, guid: c14cd43edea734d4ea5d336d74fe1c7a,
     type: 3}
   GeoLayer: Geometry
-  isoSurface: 6
+  isoSurface: 7
 --- !u!4 &1952383459
 Transform:
   m_ObjectHideFlags: 0
