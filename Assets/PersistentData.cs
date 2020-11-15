@@ -10,9 +10,10 @@ public class PersistentData : MonoBehaviour
     public int Lives = 3;
     public int Score = 0;
     public int Multiplier = 1;
-
+    private AudioSource dedSound;
     private void Awake()
     {
+        dedSound = GetComponent<AudioSource>();
         if (Instance == null)
         {
             Instance = this;
@@ -35,6 +36,10 @@ public class PersistentData : MonoBehaviour
 
     public void ResetMultiplier()
     {
+        if (Multiplier > 2)
+        {
+            dedSound.Play();
+        }
         Multiplier = 1;
     }
     public void ResetScore()
