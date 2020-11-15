@@ -39,6 +39,7 @@ public class GameManager : MonoBehaviour
     public float FadeInTime;
 
     public Action OnStartedLoad;
+    public GameObject GameOverObject;
     
     private void Awake()
     {
@@ -151,12 +152,42 @@ public class GameManager : MonoBehaviour
         {
             PersistentData.Instance.ResetLives();
             PersistentData.Instance.ResetMultiplier();
-            PersistentData.Instance.ResetScore();
             PersistentData.Instance.Level = 0;
-            LoadLevel();
+            StartCoroutine(GameOverRoutine());
             return;
         }
 
+        IEnumerator GameOverRoutine()
+        {
+
+            float t = 0.0f;
+            LoadingUI.SetActive(true);
+            PlayerGUI.Instance.Disable();
+
+            FadeImage.color = Color.black.withAlpha(0.0f);
+            while (t < 3)
+            {
+                t += Time.unscaledDeltaTime;
+                FadeImage.color = Color.black.withAlpha(t / 3.0f);
+                yield return null;
+            }
+            GameOverObject.SetActive(true);
+            
+
+            GameOverObject.GetComponentInChildren<TextMeshProUGUI>().text = $"GAME OVER\nYour Score Was\n{PersistentData.Instance.Score}";
+            if(PlayerPrefs.GetInt("Highscore", 0) == PersistentData.Instance.Score)
+            {
+                GameOverObject.GetComponentInChildren<TextMeshProUGUI>().text += "\nNEW HIGH SCORE!";
+            }
+            PersistentData.Instance.ResetScore();
+
+            yield return new WaitForSeconds(3f);
+            GameOverObject.SetActive(false);
+            LoadingUI.SetActive(false);
+
+            LoadLevel();
+            yield return null;
+        }
 
         StartCoroutine(DieRoutine());
         IEnumerator DieRoutine()
