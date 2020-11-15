@@ -50,15 +50,15 @@ public class FlyingState : PlayerState
         volume = Camera.main.GetComponent<PostProcessVolume>();
         volume.profile.TryGetSettings(out chromatic);
         Player.Velocity = Model.forward;
-        YcontrolMultiplier = PlayerPrefs.GetInt("ControlsInvertedYMultiplier");
+        YcontrolMultiplier = PlayerPrefs.GetInt("ControlsInvertedYMultiplier", 1);
     }
         
 
     public override void StateUpdate()
     {
         //Input
-        float topYaw = Input.GetAxisRaw("Acceleration");
-        float pitch = Input.GetAxisRaw("Pitch");
+        float topYaw = Input.GetAxisRaw("Acceleration") * YcontrolMultiplier;
+        float pitch = Input.GetAxisRaw("Pitch") * YcontrolMultiplier;
         float roll = Input.GetAxisRaw("Roll");
         float yaw = Input.GetAxisRaw("Yaw");
         float maxSpeed = Input.GetButton("Boost") ? BoostSpeed : MaxSpeed;
