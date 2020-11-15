@@ -210,8 +210,8 @@ MonoBehaviour:
   NoiseScaleMinMax: {x: 0.4, y: 1}
   BoidsPerSegmentMinMax: {x: 2, y: 6}
   CaveWallAmountMinMax: {x: 0, y: 3}
-  InternalCaveAmountMinMax: {x: 12, y: 15}
-  InternalCaveNoiseMinMax: {x: 0.1, y: 0.7}
+  InternalCaveAmountMinMax: {x: 11, y: 17}
+  InternalCaveNoiseMinMax: {x: 0.15, y: 0.6}
   HoleSizeMinMax: {x: 1.5, y: 2}
   LoadingUI: {fileID: 2110781585680263608}
   FadeImage: {fileID: 2110781585881484660}
@@ -222,7 +222,7 @@ MonoBehaviour:
   VictoryUI: {fileID: 0}
   FadeOutTime: 1
   FadeInTime: 3
-  GameOverObject: {fileID: 0}
+  GameOverObject: {fileID: 7886882919175873431}
 --- !u!1 &2110781585391195235
 GameObject:
   m_ObjectHideFlags: 0
