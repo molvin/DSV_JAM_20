@@ -13,7 +13,9 @@ public class PlayerGUI : MonoBehaviour
     public Image[] CrossHair;
     public float SmoothTime;
     [Header("Score")]
+    public float scoreTickSpeed;
     public TextMeshProUGUI score;
+    private int currentScore, targetScore;
     public TextMeshProUGUI multiplier;
     public Image livesMask;
     public Color[] colors;
@@ -57,8 +59,10 @@ public class PlayerGUI : MonoBehaviour
     }
     public void SetScore(int score)
     {
+        targetScore = score;
+        currentScore = (int)Mathf.Lerp(currentScore, targetScore, Time.deltaTime * scoreTickSpeed);
         var info = new NumberFormatInfo { NumberGroupSeparator = " "};
-        string s = score.ToString("n", info);
+        string s = currentScore.ToString("n", info);
         this.score.text = s.Substring(0, s.Length - 3);
     }
     public void SetMultiplier(int value)
