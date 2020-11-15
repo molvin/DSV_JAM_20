@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public Vector3 Velocity;
     public float TimeScale = 1.0f;
     public AudioSource ScratchSound;
+    public AudioSource BoosterAudioSource;
 
     private void Start()
     {
