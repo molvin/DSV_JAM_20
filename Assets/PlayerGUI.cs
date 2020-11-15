@@ -17,9 +17,15 @@ public class PlayerGUI : MonoBehaviour
     public TextMeshProUGUI score;
     private int currentScore, targetScore;
     public TextMeshProUGUI multiplier;
+    public TextMeshProUGUI addScore;
     public Image livesMask;
     public Color[] colors;
     public int colorProgression;
+    public int currentDelta = 0;
+    public float alphaDecrease = 1;
+    private float alpha = 0;
+    public AudioSource ScoreSound;
+    public int latestScore;
 
     private void Start()
     {
@@ -52,6 +58,12 @@ public class PlayerGUI : MonoBehaviour
         SetScore(PersistentData.Instance.Score);
         SetMultiplier(PersistentData.Instance.Multiplier);
         SetLives(PersistentData.Instance.Lives);
+
+        Debug.Log(alpha);
+        alpha = Mathf.Clamp01(alpha - alphaDecrease * Time.deltaTime);
+        addScore.color = addScore.color.withAlpha(alpha);
+        if (alpha == 0)
+            currentDelta = 0;
     }
     public void SetLives(int lives)
     {
@@ -59,6 +71,17 @@ public class PlayerGUI : MonoBehaviour
     }
     public void SetScore(int score)
     {
+        if(score > latestScore)
+        {
+            int delta = score - latestScore;
+            Debug.Log($"DOING IT: {delta}");
+
+            currentDelta += delta;
+            addScore.text = currentDelta.ToString();
+            alpha = 1.0f;
+            ScoreSound?.Play();
+        }
+        latestScore = score;
         targetScore = score;
         currentScore = (int)Mathf.Lerp(currentScore, targetScore, Time.deltaTime * scoreTickSpeed);
         var info = new NumberFormatInfo { NumberGroupSeparator = " "};
