@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Globalization;
 
 public class PlayerGUI : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class PlayerGUI : MonoBehaviour
     [Header("Score")]
     public TextMeshProUGUI score;
     public TextMeshProUGUI multiplier;
+    public Image livesMask;
     public Color[] colors;
     public int colorProgression;
 
@@ -44,15 +46,24 @@ public class PlayerGUI : MonoBehaviour
 
             }
         }
-    }
 
+        SetScore(PersistentData.Instance.Score);
+        SetMultiplier(PersistentData.Instance.Multiplier);
+        SetLives(PersistentData.Instance.Lives);
+    }
+    public void SetLives(int lives)
+    {
+        livesMask.fillAmount = lives / 3f;
+    }
     public void SetScore(int score)
     {
-        this.score.text = score.ToString();
+        var info = new NumberFormatInfo { NumberGroupSeparator = " "};
+        string s = score.ToString("n", info);
+        this.score.text = s.Substring(0, s.Length - 3);
     }
     public void SetMultiplier(int value)
     {
-        multiplier.text = value.ToString();
+        multiplier.text = $"x{value}";
         multiplier.color = colors[value == 0 ? 0 : value  / colorProgression];
     }
 

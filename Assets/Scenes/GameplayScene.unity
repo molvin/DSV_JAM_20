@@ -323,13 +323,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 4781957674433533081, guid: 84823baaf98d39048a3f137671c0523f,
     type: 3}
-  Segments: 15
-  Sporadic: 0.5
-  NoiseScale: 0.6
-  BoidsPerSegment: 4
   Tunnel: {fileID: 1952383457}
   VictoryZonePrefab: {fileID: 1098715309968941219, guid: 560535b1da5b3a3458d95a7872607974,
     type: 3}
+  SegmentsMinMax: {x: 7, y: 20}
+  SporadicMinMax: {x: 0.1, y: 0.9}
+  NoiseScaleMinMax: {x: 0.1, y: 0.9}
+  BoidsPerSegmentMinMax: {x: 1, y: 5}
+  CaveWallAmountMinMax: {x: 1, y: 5}
+  InternalCaveAmountMinMax: {x: 13, y: 17}
+  InternalCaveNoiseMinMax: {x: 0.1, y: 0.5}
+  HoleSizeMinMax: {x: 1, y: 3}
   LoadingUI: {fileID: 618845451}
   FadeImage: {fileID: 1357672903}
   LoadingText: {fileID: 1067851040}
@@ -518,6 +522,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4781957674433533060, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: AutoAimAngle
+      value: 0.995
+      objectReference: {fileID: 0}
     - target: {fileID: 4781957674433533081, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: m_Name
@@ -1481,9 +1490,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_HorizontalAxis: Cancel
-  m_VerticalAxis: Cancel
-  m_SubmitButton: Cancel
+  m_HorizontalAxis: Yaw
+  m_VerticalAxis: Acceleration
+  m_SubmitButton: AButton
   m_CancelButton: Cancel
   m_InputActionsPerSecond: 10
   m_RepeatDelay: 0.5
@@ -1641,10 +1650,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PCM: {fileID: 1952383458}
   lights: {fileID: 3720779589762762553, guid: b2a434d11567a4c4f9508ee4cdb0dff0, type: 3}
-  CaveWallAmountW: 2
-  InternalCaveAmount: 12
-  InternalCaveNoise: 0.3
-  HoleSize: 2
   colors:
   - {r: 0.96199226, g: 1, b: 0.4575472, a: 1}
   - {r: 1, g: 0.41667736, b: 0, a: 1}

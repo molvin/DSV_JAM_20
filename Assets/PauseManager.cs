@@ -18,6 +18,7 @@ public class PauseManager : MonoBehaviour
     {
         PauseCanvas = transform.GetChild(0).gameObject;
         GameManager.Instance.OnStartedLoad += unPause;
+        CheckerImage.SetActive(PlayerPrefs.GetInt("ControlsInvertedYMultiplier") == -1 ? true : false);
     }
     public void Pause(bool Pause)
     {
@@ -43,10 +44,11 @@ public class PauseManager : MonoBehaviour
     }
     public void ToggleInvertedControls()
     {
-        int YMultiplier = PlayerPrefs.GetInt("ControlsInvertedYMultiplier");
+        int YMultiplier = PlayerPrefs.GetInt("ControlsInvertedYMultiplier", 1);
         PlayerPrefs.SetInt("ControlsInvertedYMultiplier", YMultiplier * -1);
-
+        
         YMultiplier = PlayerPrefs.GetInt("ControlsInvertedYMultiplier");
+        Debug.Log(YMultiplier);
         CheckerImage.SetActive(YMultiplier == -1 ? true : false);
         Player.Instance.MovementMachine.GetState<FlyingState>().YcontrolMultiplier = YMultiplier;
     }
