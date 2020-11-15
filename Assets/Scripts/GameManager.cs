@@ -105,6 +105,16 @@ public class GameManager : MonoBehaviour
         volume.profile.TryGetSettings(out ChromaticAberration chromatic);
         chromatic.intensity.value = 0.0f;
 
+        PersistentData.Instance.DecreaseLives();
+
+        if(PersistentData.Instance.Lives <= 0)
+        {
+            PersistentData.Instance.ResetLives();
+            PersistentData.Instance.ResetScore();
+        }
+        PersistentData.Instance.ResetMultiplier();
+
+
         StartCoroutine(DieRoutine());
         IEnumerator DieRoutine()
         {

@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
     {
         Instance = this;
         MovementMachine.Initialize(this);
+
+        GetComponent<Health>().onDamage += PersistentData.Instance.ResetMultiplier;
     }
     private void Update()
     {

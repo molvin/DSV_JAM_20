@@ -31,6 +31,7 @@ GameObject:
   - component: {fileID: 8822196113049978134}
   - component: {fileID: 6825139336761331424}
   - component: {fileID: -6901472675070928153}
+  - component: {fileID: -6594791578679044502}
   m_Layer: 0
   m_Name: SmallBoid
   m_TagString: Untagged
@@ -97,6 +98,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 100
+--- !u!114 &-6594791578679044502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783852918371840187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50960cdda053c844e8443480b218010d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1616053839693862291
 PrefabInstance:
   m_ObjectHideFlags: 0
