@@ -34,7 +34,7 @@ public class FlyingState : PlayerState
     private ChromaticAberration chromatic = null;
 
     private Transform Model => Player.Model;
-
+    bool hasBoosted;
     public override void Enter()
     {
         volume = Camera.main.GetComponent<PostProcessVolume>();
@@ -62,9 +62,17 @@ public class FlyingState : PlayerState
         }
         if(Input.GetButton("Boost")){
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 10f, 0.1f);
+            if (!hasBoosted)
+            {
+                hasBoosted = true;
+                Player.BoosterAudioSource.Play();
+                Player.BoosterAudioSource.volume = 1;
+            }
         }
         else{
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 0f, 0.1f);
+            Player.BoosterAudioSource.volume = Mathf.Lerp(Player.BoosterAudioSource.volume, 0, 0.1f);
+            hasBoosted = false;
         }
 
         //Rotation
@@ -129,4 +137,6 @@ public class FlyingState : PlayerState
         Debug.DrawRay(transform.position, velocity, Color.red);
         */
     }
+
 }
+
