@@ -35,4 +35,5 @@ MonoBehaviour:
   MaxDamage: 70
   MinBumpSpeed: 1
   MaxBumpSpeed: 10
+  TimeBetweenBoostScore: 0.5
   YcontrolMultiplier: 1
