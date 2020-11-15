@@ -16,7 +16,7 @@ public class EnemyWeapon : Weapon
             return;
         }
 
-        if (Vector3.Dot(transform.up, Player.Up) < .95f)
+        if (Vector3.Dot(transform.up, Player.Up) < .8f)
         {
             return;
         }
