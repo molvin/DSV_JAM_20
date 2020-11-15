@@ -25,11 +25,6 @@ public class EnemyWeapon : Weapon
             return;
         }
 
-        if (Vector3.Dot(PredictedPlayer.normalized, transform.forward) < .7f)
-        {
-            return;
-        }
-
         FireProjectile(ToPredictedPlayer, transform.position);
     }
 }
