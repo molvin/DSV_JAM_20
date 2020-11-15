@@ -90,8 +90,9 @@ public class BoidsManager : MonoBehaviour
         rb.AddForce(dir * 1000.0f);
         Boy.gameObject.layer = 2;
         Boy.GetComponentInChildren<Animator>().enabled = false;
-        foreach(var b in Boy.GetComponentsInChildren<MeshRenderer>()) {
-            b.material = Instance.ScuffMaterial;
+        foreach(var mr in Boy.GetComponentsInChildren<MeshRenderer>()) {
+            mr.material.EnableKeyword("_EMISSION");
+            mr.material.SetColor("_EmissionColor", Color.black);
         }
         Destroy(Boy);
     }

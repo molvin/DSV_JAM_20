@@ -33,8 +33,18 @@ public class FlyingState : PlayerState
     private PostProcessVolume volume;
     private ChromaticAberration chromatic = null;
     public int YcontrolMultiplier = 1;
+    public System.Action OnBoostStart;
+    public System.Action OnBoostEnd;
+
     private Transform Model => Player.Model;
     bool hasBoosted;
+
+    public override void Initialize(object owner)
+    {
+        base.Initialize(owner);
+
+        Player.GetComponent<Health>().onDeath += CallBoostEnd;
+    }
     public override void Enter()
     {
         volume = Camera.main.GetComponent<PostProcessVolume>();
@@ -43,6 +53,7 @@ public class FlyingState : PlayerState
         YcontrolMultiplier = PlayerPrefs.GetInt("ControlsInvertedYMultiplier");
     }
         
+
     public override void StateUpdate()
     {
         //Input
@@ -65,6 +76,7 @@ public class FlyingState : PlayerState
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 10f, 0.1f);
             if (!hasBoosted)
             {
+                OnBoostStart?.Invoke();
                 hasBoosted = true;
                 Player.BoosterAudioSource.Play();
                 Player.BoosterAudioSource.volume = 1;
@@ -73,7 +85,10 @@ public class FlyingState : PlayerState
         else{
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 0f, 0.1f);
             Player.BoosterAudioSource.volume = Mathf.Lerp(Player.BoosterAudioSource.volume, 0, 0.1f);
+            if (hasBoosted)
+                OnBoostEnd?.Invoke();
             hasBoosted = false;
+
         }
 
         //Rotation
@@ -119,24 +134,15 @@ public class FlyingState : PlayerState
         //Movement
         transform.position += Player.Velocity * DeltaTime;
         Debug.DrawRay(transform.position, Player.Velocity, Color.magenta);
-        /*
-        //Strafing
-        float strafeVelocity = 0.0f;
-        if (Mathf.Abs(yaw) > Player.MinInput)
-        {
-            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, MaxStrafeSpeed * yaw, ref strafeVelocity, StrafeSmoothTime, 10000.0f, DeltaTime);
-        }
-        else
-        {
-            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, 0.0f, ref strafeVelocity, StrafeDecelerationSmoothTime, 10000.0f, DeltaTime);
-        }
+    }
 
-        Vector3 velocity = Model.transform.right * StrafeSpeed;
-        hit = PlayerPhysics.PreventCollision(() => Player.Cast(velocity.normalized, 100000.0f), ref velocity, transform, DeltaTime, 0.03f);
-
-        transform.position += velocity * DeltaTime;
-        Debug.DrawRay(transform.position, velocity, Color.red);
-        */
+    public void CallBoostEnd()
+    {
+        if(hasBoosted)
+        {
+            hasBoosted = false;
+            OnBoostEnd?.Invoke();
+        }    
     }
 
 }

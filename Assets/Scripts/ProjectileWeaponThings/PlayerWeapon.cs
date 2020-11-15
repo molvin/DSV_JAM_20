@@ -13,7 +13,7 @@ public class PlayerWeapon : Weapon
     {
         if ((Input.GetButton(k_FireString) || Input.GetAxisRaw("Shoot") > 0.6f) && firingCooldownTime < Time.time && !PauseManager.Instance.gamePaused)
         {
-            var direction = transform.forward;
+            var direction = Player.Forward;
             var tran = FindAutoAim();
             if (tran)
             {
@@ -32,7 +32,7 @@ public class PlayerWeapon : Weapon
             Vector3 direction = b.transform.position - transform.position;
             return direction.magnitude < Player.Instance.AutoAimMaxDistance && 
             Physics.Raycast(new Ray(transform.position, direction), direction.magnitude, Player.Instance.CollisionLayers) && 
-            Vector3.Dot(transform.forward, direction.normalized) > Player.Instance.AutoAimAngle;
+            Vector3.Dot(Player.Forward, direction.normalized) > Player.Instance.AutoAimAngle;
         }).OrderBy(b => Vector3.Distance(b.transform.position, transform.position)).Select(b => b.transform).FirstOrDefault();
     }
 }
