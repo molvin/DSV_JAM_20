@@ -35,7 +35,10 @@ public class BoidComp : MonoBehaviour
         {
             transform.forward = Velocity;
         }
-        Mesh.transform.RotateAround(Mesh.transform.forward, 3 * Time.deltaTime);
+        if (Vector3.Dot(Mesh.transform.up, Player.Up) < .8f)
+        {
+            Mesh.transform.RotateAround(Mesh.transform.forward, 3 * Time.deltaTime);
+        }
     }
     public void UpdateBoy()
     {

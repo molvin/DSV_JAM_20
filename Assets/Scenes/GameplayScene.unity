@@ -326,7 +326,7 @@ MonoBehaviour:
   Segments: 15
   Sporadic: 0.5
   NoiseScale: 0.6
-  BoidsPerSegment: 2
+  BoidsPerSegment: 4
   Tunnel: {fileID: 1952383457}
   VictoryZonePrefab: {fileID: 1098715309968941219, guid: 560535b1da5b3a3458d95a7872607974,
     type: 3}
