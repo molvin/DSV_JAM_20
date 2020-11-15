@@ -327,13 +327,13 @@ MonoBehaviour:
   VictoryZonePrefab: {fileID: 1098715309968941219, guid: 560535b1da5b3a3458d95a7872607974,
     type: 3}
   SegmentsMinMax: {x: 7, y: 20}
-  SporadicMinMax: {x: 0.2, y: 1}
-  NoiseScaleMinMax: {x: 0.2, y: 1}
+  SporadicMinMax: {x: 0.5, y: 1}
+  NoiseScaleMinMax: {x: 0.5, y: 1}
   BoidsPerSegmentMinMax: {x: 2, y: 6}
-  CaveWallAmountMinMax: {x: 1, y: 5}
-  InternalCaveAmountMinMax: {x: 10, y: 20}
-  InternalCaveNoiseMinMax: {x: 0.2, y: 0.9}
-  HoleSizeMinMax: {x: 2, y: 4}
+  CaveWallAmountMinMax: {x: 0, y: 2}
+  InternalCaveAmountMinMax: {x: 12, y: 16}
+  InternalCaveNoiseMinMax: {x: 0.2, y: 0.6}
+  HoleSizeMinMax: {x: 2, y: 3}
   LoadingUI: {fileID: 618845451}
   FadeImage: {fileID: 1357672903}
   LoadingText: {fileID: 1067851040}
