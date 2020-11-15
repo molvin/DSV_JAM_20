@@ -31,13 +31,14 @@ public class FlyingState : PlayerState
     public float MaxDamage;
     public float MinBumpSpeed;
     public float MaxBumpSpeed;
+    public float TimeBetweenBoostScore = 0.1f;
 
     private PostProcessVolume volume;
     private ChromaticAberration chromatic = null;
     public int YcontrolMultiplier = 1;
     public System.Action OnBoostStart;
     public System.Action OnBoostEnd;
-
+    float timeBoostStart;
     private Transform Model => Player.Model;
     bool hasBoosted;
 
@@ -77,12 +78,18 @@ public class FlyingState : PlayerState
         if(Input.GetButton("Boost")){
             Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, MaxFov, 0.1f);
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 10f, 0.1f);
+            if(Time.time - timeBoostStart > TimeBetweenBoostScore)
+            {
+                timeBoostStart = Time.time;
+                PersistentData.Instance.IncreaseScore(1);
+            }
             if (!hasBoosted)
             {
                 OnBoostStart?.Invoke();
                 hasBoosted = true;
                 Player.BoosterAudioSource.Play();
                 Player.BoosterAudioSource.volume = 1;
+                timeBoostStart = Time.time;
             }
         }
         else{
