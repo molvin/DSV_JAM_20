@@ -725,8 +725,8 @@ MonoBehaviour:
   - {fileID: 1399664681075177747}
   - {fileID: 2102661359}
   SmoothTime: 0.02
-  score: {fileID: 0}
-  multiplier: {fileID: 0}
+  score: {fileID: 8602096724371317319}
+  multiplier: {fileID: 4421819080501906341}
   colors:
   - {r: 0.98039216, g: 0.98039216, b: 0.98039216, a: 1}
   - {r: 0.98039216, g: 0.8235294, b: 0.1764706, a: 1}
