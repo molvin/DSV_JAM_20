@@ -191,10 +191,10 @@ public class GameManager : MonoBehaviour
             t = 0.0f;
             PlayerGUI.Instance.Enable();
 
-            while (t < 3)
+            while (t < FadeOutTime)
             {
                 t += Time.unscaledDeltaTime;
-                FadeImage.color = Color.black.withAlpha(1f - t / 3.0f);
+                FadeImage.color = Color.black.withAlpha(1f - t / FadeOutTime);
                 yield return null;
             }
             FadeImage.color = Color.black.withAlpha(0.0f);

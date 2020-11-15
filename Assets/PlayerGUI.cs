@@ -30,6 +30,7 @@ public class PlayerGUI : MonoBehaviour
     private void Start()
     {
         Instance = this;
+        latestScore = PersistentData.Instance.Score;
     }
 
     private void Update()
@@ -59,7 +60,6 @@ public class PlayerGUI : MonoBehaviour
         SetMultiplier(PersistentData.Instance.Multiplier);
         SetLives(PersistentData.Instance.Lives);
 
-        Debug.Log(alpha);
         alpha = Mathf.Clamp01(alpha - alphaDecrease * Time.deltaTime);
         addScore.color = addScore.color.withAlpha(alpha);
         if (alpha == 0)
@@ -74,7 +74,6 @@ public class PlayerGUI : MonoBehaviour
         if(score > latestScore)
         {
             int delta = score - latestScore;
-            Debug.Log($"DOING IT: {delta}");
 
             currentDelta += delta;
             addScore.text = currentDelta.ToString();
@@ -85,7 +84,7 @@ public class PlayerGUI : MonoBehaviour
         targetScore = score;
         currentScore = (int)Mathf.Lerp(currentScore, targetScore, Time.deltaTime * scoreTickSpeed);
         var info = new NumberFormatInfo { NumberGroupSeparator = " "};
-        string s = currentScore.ToString("n", info);
+        string s = targetScore.ToString("n", info);
         this.score.text = s.Substring(0, s.Length - 3);
     }
     public void SetMultiplier(int value)
