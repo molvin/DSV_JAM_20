@@ -326,13 +326,13 @@ MonoBehaviour:
   Tunnel: {fileID: 1952383457}
   VictoryZonePrefab: {fileID: 1098715309968941219, guid: 560535b1da5b3a3458d95a7872607974,
     type: 3}
-  SegmentsMinMax: {x: 7, y: 30}
+  SegmentsMinMax: {x: 7, y: 20}
   SporadicMinMax: {x: 0.1, y: 0.9}
   NoiseScaleMinMax: {x: 0.1, y: 0.9}
   BoidsPerSegmentMinMax: {x: 1, y: 5}
-  CaveWallAmountMinMax: {x: 0, y: 5}
-  InternalCaveAmountMinMax: {x: 10, y: 15}
-  InternalCaveNoiseMinMax: {x: 0.1, y: 0.7}
+  CaveWallAmountMinMax: {x: 1, y: 5}
+  InternalCaveAmountMinMax: {x: 13, y: 17}
+  InternalCaveNoiseMinMax: {x: 0.1, y: 0.5}
   HoleSizeMinMax: {x: 1, y: 3}
   LoadingUI: {fileID: 618845451}
   FadeImage: {fileID: 1357672903}
@@ -522,6 +522,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4781957674433533060, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: AutoAimAngle
+      value: 0.995
+      objectReference: {fileID: 0}
     - target: {fileID: 4781957674433533081, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: m_Name
