@@ -41,21 +41,21 @@ public class PauseManager : MonoBehaviour
         if(gamePaused)
         {
 
-            if (Input.GetAxis("Pitch") > 0.3f || Input.GetAxis("Pitch") < -0.3f)
+            if (Input.GetAxis("Acceleration") > 0.5f || Input.GetAxis("Acceleration") < -0.5f || Input.GetAxis("Pitch") > 0.5f || Input.GetAxis("Pitch") < -0.5f)
             {
                 if (!updatedSelectedButton)
                 {
                     updatedSelectedButton = true;
-                    if (Input.GetAxis("Acceleration") > 0.3f)
+                    if (Input.GetAxis("Acceleration") > 0.5f || Input.GetAxis("Pitch") > 0.5f)
                         selectedButton -= 1;
-                    else if (Input.GetAxis("Acceleration") < -0.3f)
+                    else if (Input.GetAxis("Acceleration") < -0.5f || Input.GetAxis("Pitch") < -0.5f)
                         selectedButton += 1;
 
                     selectedButton = (int)Mathf.Clamp(selectedButton, 0, ButtonArray.Length - 1);
                     UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(ButtonArray[selectedButton].gameObject);
                 }
             }
-            else
+            else if (Input.GetAxis("Acceleration") < 0.2f && Input.GetAxis("Acceleration") > -0.2f && Input.GetAxis("Pitch") > 0.2f && Input.GetAxis("Pitch") > -0.2f)
                 updatedSelectedButton = false;
 
         }
