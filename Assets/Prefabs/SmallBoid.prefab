@@ -5091,6 +5091,9 @@ MonoBehaviour:
     type: 2}
   projectile: 6
   FiringRange: 15
+  Geometry:
+    serializedVersion: 2
+    m_Bits: 268435456
 --- !u!114 &-8895793841665886170
 MonoBehaviour:
   m_ObjectHideFlags: 0
