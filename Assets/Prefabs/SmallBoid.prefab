@@ -4992,6 +4992,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_MainProjectileData: {fileID: 11400000, guid: 05917170777a1aa4a9f897277de58c1c,
     type: 2}
+  projectile: 6
   FiringRange: 15
 --- !u!114 &-8895793841665886170
 MonoBehaviour:

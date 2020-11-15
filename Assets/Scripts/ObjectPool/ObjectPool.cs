@@ -21,6 +21,7 @@ public class ObjectPool : MonoBehaviour
         }
     }
     [SerializeField] private Pool m_projectilePool;
+    [SerializeField] private Pool m_enemyProjectilePool;
     [SerializeField] private Pool m_EnemyPool;
     [Header("VFX")]
     [SerializeField] private Pool m_ImpactVFXPool;
@@ -37,6 +38,7 @@ public class ObjectPool : MonoBehaviour
         Enemy,
         ImpactSFX,
         EnemyDeathSFX,
+        EnemyProjectileVFX
     }
     private void Awake()
     {
@@ -57,6 +59,7 @@ public class ObjectPool : MonoBehaviour
 
         m_EnemyExplosionSFXPool.InitializePool(transform);
         m_ImpactSFXPool.InitializePool(transform);
+        m_enemyProjectilePool.InitializePool(transform);
     }
     public GameObject rentObject(ObjectType ObjectType)
     {       
@@ -76,6 +79,8 @@ public class ObjectPool : MonoBehaviour
                     return m_ImpactSFXPool.poolArray;
                 case ObjectType.EnemyDeathSFX:
                     return m_EnemyExplosionSFXPool.poolArray;
+                case ObjectType.EnemyProjectileVFX:
+                    return m_enemyProjectilePool.poolArray;
                 default:
                     Debug.LogWarning("No pool for this enum");
                     return null;
