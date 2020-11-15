@@ -38,7 +38,7 @@ public class PersistentData : MonoBehaviour
     {
         if (Multiplier > 2)
         {
-            dedSound.play();
+            dedSound.Play();
         }
         Multiplier = 1;
     }
