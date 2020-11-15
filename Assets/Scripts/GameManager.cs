@@ -103,7 +103,7 @@ public class GameManager : MonoBehaviour
             {
                 if(count > 2)
                 {
-                    BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
+                    BoidsManager.Spawn(s.pos, s.radius * 0.5f, _BoidsPerSegment, Player.Instance.transform);
 
                 }
                 count++;
@@ -177,7 +177,7 @@ public class GameManager : MonoBehaviour
             foreach (var s in SplineNoise3D.SplineHole)
             {
                 if(count > 2)
-                    BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
+                    BoidsManager.Spawn(s.pos, s.radius * 0.5f, _BoidsPerSegment, Player.Instance.transform);
                 count++;
             }
 
