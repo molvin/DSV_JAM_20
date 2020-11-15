@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class PlayerGUI : MonoBehaviour
 {
@@ -10,6 +11,11 @@ public class PlayerGUI : MonoBehaviour
     public Image HealthImage;
     public Image[] CrossHair;
     public float SmoothTime;
+    [Header("Score")]
+    public TextMeshProUGUI score;
+    public TextMeshProUGUI multiplier;
+    public Color[] colors;
+    public int colorProgression;
 
     private void Start()
     {
@@ -38,8 +44,18 @@ public class PlayerGUI : MonoBehaviour
 
             }
         }
-
     }
+
+    public void SetScore(int score)
+    {
+        this.score.text = score.ToString();
+    }
+    public void SetMultiplier(int value)
+    {
+        multiplier.text = value.ToString();
+        multiplier.color = colors[value == 0 ? 0 : value  / colorProgression];
+    }
+
     public void Disable()
     {
         Holder.SetActive(false);
