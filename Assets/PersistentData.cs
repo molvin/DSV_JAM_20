@@ -30,6 +30,8 @@ public class PersistentData : MonoBehaviour
     public void IncreaseScore(int score)
     {
         Score += score * Multiplier;
+        if (PlayerPrefs.GetInt("Highscore", 0) < Score)
+            PlayerPrefs.SetInt("Highscore", Score);
     }
     public void IncreaseMultiplier(int multi)
     {
