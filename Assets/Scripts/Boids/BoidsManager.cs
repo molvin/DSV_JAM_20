@@ -94,6 +94,11 @@ public class BoidsManager : MonoBehaviour
             mr.material.EnableKeyword("_EMISSION");
             mr.material.SetColor("_EmissionColor", Color.black);
         }
+        var weapon = Boy.GetComponentInChildren<EnemyWeapon>();
+        if (weapon)
+        {
+            weapon.enabled = false;
+        }
         Destroy(Boy);
     }
 

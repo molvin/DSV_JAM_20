@@ -11,7 +11,11 @@ public class EnemyWeapon : Weapon
         }
 
         Vector3 ToPlayer = Player.Position - transform.position;
-        if (FiringRange < ToPlayer.magnitude || Vector3.Dot(ToPlayer, Player.Forward) > 0)
+        float LookAheadTime = ToPlayer.magnitude / (m_MainProjectileData.travelSpeed + Player.Instance.Velocity.magnitude);
+        Vector3 PredictedPlayer = Player.Position + Player.Instance.Velocity * LookAheadTime;
+        Vector3 ToPredictedPlayer = PredictedPlayer - transform.position;
+
+        if (FiringRange < ToPredictedPlayer.magnitude || Vector3.Dot(ToPredictedPlayer, Player.Forward) > 0)
         {
             return;
         }
@@ -21,6 +25,6 @@ public class EnemyWeapon : Weapon
             return;
         }
 
-        FireProjectile(ToPlayer.normalized, transform.position);
+        FireProjectile(ToPredictedPlayer, transform.position);
     }
 }
