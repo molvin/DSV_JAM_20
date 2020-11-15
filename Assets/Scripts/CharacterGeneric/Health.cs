@@ -7,6 +7,7 @@ public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private float health = 100;
     public Action onDeath;
+    public Action onDamage;
     private float currentHealth;
 
     private bool dead = false;
@@ -19,6 +20,11 @@ public class Health : MonoBehaviour, IDamageable
     {
         if (currentHealth > 0)
             dead = false;
+
+        if (dead)
+            return;
+
+        onDamage?.Invoke();
         currentHealth -= damage;
         if (currentHealth <= 0 && !dead)
         {

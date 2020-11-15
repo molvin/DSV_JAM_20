@@ -7,6 +7,9 @@ public class PersistentData : MonoBehaviour
     public static PersistentData Instance;
 
     public int Level = -1;
+    public int Lives = 3;
+    public int Score = 0;
+    public int Multiplier = 1;
 
     private void Start()
     {
@@ -17,6 +20,37 @@ public class PersistentData : MonoBehaviour
         }
         else
             DestroyImmediate(gameObject);
+    }
+
+    private void Update()
+    {
+        Debug.Log($"Score: {Score} Multi: {Multiplier}");
+    }
+
+    public void IncreaseScore(int score)
+    {
+        Score += score * Multiplier;
+    }
+    public void IncreaseMultiplier(int multi)
+    {
+        Multiplier += multi;
+    }
+
+    public void ResetMultiplier()
+    {
+        Multiplier = 1;
+    }
+    public void ResetScore()
+    {
+        Score = 0;
+    }
+    public void DecreaseLives()
+    {
+        Lives--;
+    }
+    public void ResetLives()
+    {
+        Lives = 3;
     }
 
 }

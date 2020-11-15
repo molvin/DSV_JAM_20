@@ -1025,6 +1025,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Level: 0
+  Lives: 3
+  Score: 0
+  Multiplier: 1
 --- !u!4 &965263667
 Transform:
   m_ObjectHideFlags: 0
