@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyProjectileData
   m_EditorClassIdentifier: 
   projectileRadius: 0.1
-  travelSpeed: 40
+  travelSpeed: 12
   explosionRadius: 0.3
   firingCooldown: 2
   damage: 30

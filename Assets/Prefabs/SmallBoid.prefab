@@ -35,6 +35,7 @@ GameObject:
   - component: {fileID: -4070919575242812724}
   - component: {fileID: 3071770031420058364}
   - component: {fileID: -6912470122885415867}
+  - component: {fileID: -8895793841665886170}
   m_Layer: 0
   m_Name: SmallBoid
   m_TagString: Untagged
@@ -4992,6 +4993,20 @@ MonoBehaviour:
   m_MainProjectileData: {fileID: 11400000, guid: 05917170777a1aa4a9f897277de58c1c,
     type: 2}
   FiringRange: 15
+--- !u!114 &-8895793841665886170
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5783852918371840187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50960cdda053c844e8443480b218010d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Score: 5
+  Multi: 1
 --- !u!1001 &1616053839693862291
 PrefabInstance:
   m_ObjectHideFlags: 0

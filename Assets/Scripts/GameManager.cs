@@ -98,9 +98,15 @@ public class GameManager : MonoBehaviour
             GameObject go = Instantiate(VictoryZonePrefab, end.pos, Quaternion.identity);
             go.transform.localScale = new Vector3(end.radius, end.radius, end.radius);
 
+            int count = 0;
             foreach (var s in SplineNoise3D.SplineHole)
             {
-                BoidsManager.Spawn(s.pos, s.radius * 0.5f, _BoidsPerSegment, Player.Instance.transform);
+                if(count > 2)
+                {
+                    BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
+
+                }
+                count++;
             }
 
             Vector3 forward = (SplineNoise3D.SplineHole[1].pos - SplineNoise3D.SplineHole[0].pos).normalized;
@@ -167,9 +173,12 @@ public class GameManager : MonoBehaviour
             Player.Instance.MovementMachine.TransitionTo<IdleState>();
 
             BoidsManager.ClearBoids();
+            int count = 0;
             foreach (var s in SplineNoise3D.SplineHole)
             {
-                BoidsManager.Spawn(s.pos, s.radius * 0.5f, _BoidsPerSegment, Player.Instance.transform);
+                if(count > 2)
+                    BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
+                count++;
             }
 
             t = 0.0f;
