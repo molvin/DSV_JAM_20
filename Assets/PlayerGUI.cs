@@ -78,7 +78,8 @@ public class PlayerGUI : MonoBehaviour
             currentDelta += delta;
             addScore.text = currentDelta.ToString();
             alpha = 1.0f;
-            ScoreSound?.Play();
+            if(PersistentData.Instance.LatestScoreSource != "Boost")
+                ScoreSound?.Play();
         }
         latestScore = score;
         targetScore = score;

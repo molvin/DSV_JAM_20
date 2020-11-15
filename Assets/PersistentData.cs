@@ -10,6 +10,7 @@ public class PersistentData : MonoBehaviour
     public int Lives = 3;
     public int Score = 0;
     public int Multiplier = 1;
+    public string LatestScoreSource = "";
     private AudioSource dedSound;
     private void Awake()
     {
@@ -23,9 +24,10 @@ public class PersistentData : MonoBehaviour
             DestroyImmediate(gameObject);
     }
 
-    public void IncreaseScore(int score)
+    public void IncreaseScore(int score, string source = "")
     {
         Score += score * Multiplier;
+        LatestScoreSource = source;
         if (PlayerPrefs.GetInt("Highscore", 0) < Score)
             PlayerPrefs.SetInt("Highscore", Score);
     }

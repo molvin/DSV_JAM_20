@@ -81,7 +81,7 @@ public class FlyingState : PlayerState
             if(Time.time - timeBoostStart > TimeBetweenBoostScore)
             {
                 timeBoostStart = Time.time;
-                PersistentData.Instance.IncreaseScore(1);
+                PersistentData.Instance.IncreaseScore(1, "Boost");
             }
             if (!hasBoosted)
             {
