@@ -15,6 +15,7 @@ public class BoidComp : MonoBehaviour
 
     public Transform Target;
     public Transform Mesh;
+    public AudioSource BeeSound;
 
     private Vector3 Velocity;
     private Vector3 WanderTarget;
@@ -27,7 +28,11 @@ public class BoidComp : MonoBehaviour
         Velocity = Random.onUnitSphere * Settings.MaxSpeed;
         WanderTarget = transform.position;
         Collider = GetComponent<SphereCollider>();
-        GetComponent<Health>().onDeath += () => BoidsManager.DeleteBoid(this);
+        GetComponent<Health>().onDeath += () =>
+        {
+            BeeSound.Stop();
+            BoidsManager.DeleteBoid(this);
+        };
     }
     private void LateUpdate()
     {
