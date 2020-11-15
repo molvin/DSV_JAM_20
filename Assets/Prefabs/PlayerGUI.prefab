@@ -889,6 +889,7 @@ MonoBehaviour:
   - {fileID: 1399664681075177747}
   - {fileID: 2102661359}
   SmoothTime: 0.02
+  scoreTickSpeed: 1000
   score: {fileID: 8602096724371317319}
   multiplier: {fileID: 4421819080501906341}
   livesMask: {fileID: 4873236490462668856}
