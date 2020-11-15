@@ -341,7 +341,7 @@ MonoBehaviour:
   LevelText: {fileID: 606682737}
   HighScoreText: {fileID: 1038251440}
   VictoryUI: {fileID: 0}
-  FadeOutTime: 5
+  FadeOutTime: 1
   FadeInTime: 3
 --- !u!1 &606682735
 GameObject:
