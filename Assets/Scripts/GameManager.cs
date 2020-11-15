@@ -12,12 +12,20 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public GameObject PlayerPrefab;
-    public int Segments;
-    public float Sporadic;
-    public float NoiseScale;
-    public int BoidsPerSegment;
     public TunnelMaker Tunnel;
     public GameObject VictoryZonePrefab;
+
+    //Generation settings
+    [Header("GENERATION SETTINGS!½!!!")]
+    public Vector2Int SegmentsMinMax;
+    public Vector2 SporadicMinMax;
+    public Vector2 NoiseScaleMinMax;
+    public Vector2Int BoidsPerSegmentMinMax;
+    public Vector2 CaveWallAmountMinMax;
+    public Vector2 InternalCaveAmountMinMax;
+    public Vector2 InternalCaveNoiseMinMax;
+    public Vector2 HoleSizeMinMax;
+    private int _BoidsPerSegment;
 
     [Header("UI")]
     public GameObject LoadingUI;
@@ -45,11 +53,35 @@ public class GameManager : MonoBehaviour
     public void LoadLevel()
     {
         OnStartedLoad?.Invoke();
+        
+        //Level data
+        float level = PersistentData.Instance.Level/10f;
+        level = level > 1f ? 1f : level;
+
+        //Segs
+        int Segments = (int)Mathf.Lerp(SegmentsMinMax.x, SegmentsMinMax.y, level);
+        //Sporadics
+        float SporadicMax = Mathf.Lerp(SporadicMinMax.x, SporadicMinMax.y, Mathf.Clamp01(level + 0.3f));
+        float Sporadic = UnityEngine.Random.Range(SporadicMinMax.x, SporadicMax);
+        //Noise size
+        float NoiseScale = UnityEngine.Random.Range(NoiseScaleMinMax.x, NoiseScaleMinMax.y);
+        //Boids
+        _BoidsPerSegment = (int)Mathf.Lerp(BoidsPerSegmentMinMax.x, BoidsPerSegmentMinMax.y, level);
+        //Walls
+        float CaveWallAmountMax = Mathf.Lerp(CaveWallAmountMinMax.x, CaveWallAmountMinMax.y, Mathf.Clamp01(level + 0.5f));
+        float CaveWallAmount = UnityEngine.Random.Range(CaveWallAmountMinMax.x, CaveWallAmountMax);
+        //Ohno things in the way
+        float InternalCaveAmountMax = Mathf.Lerp(InternalCaveAmountMinMax.x, InternalCaveAmountMinMax.y, Mathf.Clamp01(level + 0.2f));
+        float InternalCaveAmount = UnityEngine.Random.Range(InternalCaveAmountMinMax.x, InternalCaveAmountMax);
+        //Ohno things in the way noise
+        float InternalCaveNoise = UnityEngine.Random.Range(InternalCaveNoiseMinMax.x, InternalCaveNoiseMinMax.y);
+        //Safety hole
+        float HoleSize = UnityEngine.Random.Range(HoleSizeMinMax.x, HoleSizeMinMax.y);
+
         StartCoroutine(buildLevel());
         IEnumerator buildLevel()
         {
             PersistentData.Instance.Level++;
-
             PlayerGUI.Instance.Disable();
             LoadingUI.SetActive(true);
             LoadingText.gameObject.SetActive(true);
@@ -69,7 +101,7 @@ public class GameManager : MonoBehaviour
 
             foreach (var s in SplineNoise3D.SplineHole)
             {
-                BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
+                BoidsManager.Spawn(s.pos, s.radius * 0.5f, _BoidsPerSegment, Player.Instance.transform);
             }
 
             Vector3 forward = (SplineNoise3D.SplineHole[1].pos - SplineNoise3D.SplineHole[0].pos).normalized;
@@ -92,7 +124,6 @@ public class GameManager : MonoBehaviour
             }
             LoadingUI.SetActive(false);
             Player.Instance.MovementMachine.TransitionTo<FlyingState>();
-          
         }
     }
 
@@ -129,7 +160,7 @@ public class GameManager : MonoBehaviour
             BoidsManager.ClearBoids();
             foreach (var s in SplineNoise3D.SplineHole)
             {
-                BoidsManager.Spawn(s.pos, s.radius * 0.5f, BoidsPerSegment, Player.Instance.transform);
+                BoidsManager.Spawn(s.pos, s.radius * 0.5f, _BoidsPerSegment, Player.Instance.transform);
             }
 
             t = 0.0f;
