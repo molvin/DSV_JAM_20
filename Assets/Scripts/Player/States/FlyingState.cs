@@ -110,23 +110,5 @@ public class FlyingState : PlayerState
         //Movement
         transform.position += Player.Velocity * DeltaTime;
         Debug.DrawRay(transform.position, Player.Velocity, Color.magenta);
-        /*
-        //Strafing
-        float strafeVelocity = 0.0f;
-        if (Mathf.Abs(yaw) > Player.MinInput)
-        {
-            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, MaxStrafeSpeed * yaw, ref strafeVelocity, StrafeSmoothTime, 10000.0f, DeltaTime);
-        }
-        else
-        {
-            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, 0.0f, ref strafeVelocity, StrafeDecelerationSmoothTime, 10000.0f, DeltaTime);
-        }
-
-        Vector3 velocity = Model.transform.right * StrafeSpeed;
-        hit = PlayerPhysics.PreventCollision(() => Player.Cast(velocity.normalized, 100000.0f), ref velocity, transform, DeltaTime, 0.03f);
-
-        transform.position += velocity * DeltaTime;
-        Debug.DrawRay(transform.position, velocity, Color.red);
-        */
     }
 }
