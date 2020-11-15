@@ -2,7 +2,7 @@
 public class EnemyWeapon : Weapon
 {
     public float FiringRange;
-
+    public LayerMask Geometry;
     private void Update()
     {
         if (firingCooldownTime > Time.time)
@@ -20,7 +20,11 @@ public class EnemyWeapon : Weapon
         Vector3 PredictedPlayer = Player.Position + Player.Instance.Velocity * LookAheadTime;
         Vector3 ToPredictedPlayer = PredictedPlayer - transform.position;
 
-        if (FiringRange < ToPredictedPlayer.magnitude || Vector3.Dot(ToPredictedPlayer, Player.Forward) > 0)
+        //Ray
+        Vector3 ToBoid = transform.position - Player.Position;
+        bool wallInWay = Physics.Raycast(new Ray(Player.Position, ToBoid.normalized), ToBoid.magnitude, Geometry);
+
+        if(FiringRange < ToPredictedPlayer.magnitude || Vector3.Dot(ToPredictedPlayer, Player.Forward) > 0 || wallInWay)
         {
             return;
         }

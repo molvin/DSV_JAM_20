@@ -130,34 +130,9 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2110781584976755345, guid: 2d2885f3020d6ea4c936d596b4315fe6,
         type: 3}
-      propertyPath: GameOverObject
-      value: 
-      objectReference: {fileID: 269501685}
-    - target: {fileID: 2110781584976755345, guid: 2d2885f3020d6ea4c936d596b4315fe6,
-        type: 3}
       propertyPath: Tunnel
       value: 
       objectReference: {fileID: 1952383457}
-    - target: {fileID: 2110781584976755345, guid: 2d2885f3020d6ea4c936d596b4315fe6,
-        type: 3}
-      propertyPath: InternalCaveAmountMinMax.y
-      value: 17
-      objectReference: {fileID: 0}
-    - target: {fileID: 2110781584976755345, guid: 2d2885f3020d6ea4c936d596b4315fe6,
-        type: 3}
-      propertyPath: InternalCaveAmountMinMax.x
-      value: 11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2110781584976755345, guid: 2d2885f3020d6ea4c936d596b4315fe6,
-        type: 3}
-      propertyPath: InternalCaveNoiseMinMax.y
-      value: 0.6
-      objectReference: {fileID: 0}
-    - target: {fileID: 2110781584976755345, guid: 2d2885f3020d6ea4c936d596b4315fe6,
-        type: 3}
-      propertyPath: InternalCaveNoiseMinMax.x
-      value: 0.15
-      objectReference: {fileID: 0}
     - target: {fileID: 2110781584976755346, guid: 2d2885f3020d6ea4c936d596b4315fe6,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -218,19 +193,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    - target: {fileID: 2110781585391195234, guid: 2d2885f3020d6ea4c936d596b4315fe6,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2d2885f3020d6ea4c936d596b4315fe6, type: 3}
---- !u!1 &269501685 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7886882919175873431, guid: 2d2885f3020d6ea4c936d596b4315fe6,
-    type: 3}
-  m_PrefabInstance: {fileID: 269501684}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &668180763
 PrefabInstance:
   m_ObjectHideFlags: 0
