@@ -8,6 +8,8 @@ public class FlyingState : PlayerState
     [Header("Speed")]
     public float MaxSpeed;
     public float BoostSpeed;
+    public int MinFov;
+    public int MaxFov;
     [Header("Acceleration")]
     public float Acceleration;
     public float Deceleration;
@@ -73,6 +75,7 @@ public class FlyingState : PlayerState
             Player.Velocity = Vector3.Lerp(Player.Velocity, Model.forward * maxSpeed, SpeedLerp * DeltaTime);
         }
         if(Input.GetButton("Boost")){
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, MaxFov, 0.1f);
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 10f, 0.1f);
             if (!hasBoosted)
             {
@@ -83,6 +86,7 @@ public class FlyingState : PlayerState
             }
         }
         else{
+            Camera.main.fieldOfView = Mathf.Lerp(Camera.main.fieldOfView, MinFov, 0.1f);
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 0f, 0.1f);
             Player.BoosterAudioSource.volume = Mathf.Lerp(Player.BoosterAudioSource.volume, 0, 0.1f);
             if (hasBoosted)

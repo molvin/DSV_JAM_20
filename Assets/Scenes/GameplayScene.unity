@@ -524,6 +524,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4781957674237383033, guid: 84823baaf98d39048a3f137671c0523f,
+        type: 3}
+      propertyPath: near clip plane
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 4781957674433533060, guid: 84823baaf98d39048a3f137671c0523f,
         type: 3}
       propertyPath: AutoAimAngle

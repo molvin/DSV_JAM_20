@@ -12,7 +12,7 @@ public class PauseManager : MonoBehaviour
     private GameObject PauseCanvas;
     public static PauseManager Instance;
     public Button[] ButtonArray;
-    private uint selectedButton;
+    private int selectedButton;
     bool updatedSelectedButton;
     private void Awake()
     {
@@ -46,12 +46,12 @@ public class PauseManager : MonoBehaviour
                 if (!updatedSelectedButton)
                 {
                     updatedSelectedButton = true;
-                    if (Input.GetAxis("Pitch") > 0.3f)
-                        selectedButton += 1;
-                    else if (Input.GetAxis("Pitch") < -0.3f)
+                    if (Input.GetAxis("Acceleration") > 0.3f)
                         selectedButton -= 1;
+                    else if (Input.GetAxis("Acceleration") < -0.3f)
+                        selectedButton += 1;
 
-                    selectedButton = (uint)Mathf.Clamp(selectedButton, 0, ButtonArray.Length - 1);
+                    selectedButton = (int)Mathf.Clamp(selectedButton, 0, ButtonArray.Length - 1);
                     UnityEngine.EventSystems.EventSystem.current.SetSelectedGameObject(ButtonArray[selectedButton].gameObject);
                 }
             }
