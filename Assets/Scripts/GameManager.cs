@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI LoadingText;
     public TextMeshProUGUI ProgressText;
     public TextMeshProUGUI LevelText;
+    public TextMeshProUGUI HighScoreText;
     public GameObject VictoryUI;
     public float FadeOutTime;
     public float FadeInTime;
@@ -85,13 +86,15 @@ public class GameManager : MonoBehaviour
             LoadingUI.SetActive(true);
             LoadingText.gameObject.SetActive(true);
             ProgressText.gameObject.SetActive(true);
+            HighScoreText.gameObject.SetActive(true);
             LevelText.gameObject.SetActive(true);
             FadeImage.color = Color.black.withAlpha(1.0f);
 
             Player.Instance.gameObject.SetActive(false);
             ProgressText.text = $"Generated 0/{Segments} Segments";
             LevelText.text = $"Level {PersistentData.Instance.Level}";
-            Tunnel.Progress += (i) => { ProgressText.text = $"Generated {i+1}/{Segments} Segments"; };
+            HighScoreText.text = $"Highscore: {PlayerPrefs.GetInt("Highscore", 0)}";
+            Tunnel.Progress += (i) => { ProgressText.text = $"Loaded {i+1}/{Segments} Segments"; };
             yield return Tunnel.createLevelSLowLike(Segments, Sporadic, NoiseScale);
 
             SplineNoise3D.Spline end = SplineNoise3D.SplineLine[SplineNoise3D.SplineLine.Count - 2];
@@ -117,6 +120,7 @@ public class GameManager : MonoBehaviour
             LoadingText.gameObject.SetActive(false);
             ProgressText.gameObject.SetActive(false);
             LevelText.gameObject.SetActive(false);
+            HighScoreText.gameObject.SetActive(false);
 
 
             float t = 0.0f;
@@ -145,9 +149,12 @@ public class GameManager : MonoBehaviour
         if(PersistentData.Instance.Lives <= 0)
         {
             PersistentData.Instance.ResetLives();
+            PersistentData.Instance.ResetMultiplier();
             PersistentData.Instance.ResetScore();
+            PersistentData.Instance.Level = 0;
+            LoadLevel();
+            return;
         }
-        PersistentData.Instance.ResetMultiplier();
 
 
         StartCoroutine(DieRoutine());

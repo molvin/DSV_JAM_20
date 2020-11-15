@@ -10,6 +10,7 @@ public class Weapon : MonoBehaviour
     protected float firingCooldownTime;
     private ParticleSystem m_MuzzleFlash;
     private AudioSource m_AudioSource;
+    public ObjectPool.ObjectType projectile;
 
     private void Start()
     {
@@ -18,7 +19,7 @@ public class Weapon : MonoBehaviour
     }
     public void FireProjectile(Vector3 Dir, Vector3 Position)
     {
-        Projectile Projectile = ObjectPool.Instance.rentObject(ObjectPool.ObjectType.ProjectileVFX).GetComponent<Projectile>();
+        Projectile Projectile = ObjectPool.Instance.rentObject(projectile).GetComponent<Projectile>();
         Projectile.InitializeProjectile(m_MainProjectileData, Position, Quaternion.LookRotation(Dir));
         firingCooldownTime = Time.time + m_MainProjectileData.firingCooldown;
         m_MuzzleFlash.Play();
