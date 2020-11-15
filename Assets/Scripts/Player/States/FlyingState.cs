@@ -34,7 +34,7 @@ public class FlyingState : PlayerState
     private ChromaticAberration chromatic = null;
 
     private Transform Model => Player.Model;
-
+    bool hasBoosted;
     public override void Enter()
     {
         volume = Camera.main.GetComponent<PostProcessVolume>();
@@ -62,9 +62,17 @@ public class FlyingState : PlayerState
         }
         if(Input.GetButton("Boost")){
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 10f, 0.1f);
+            if (!hasBoosted)
+            {
+                hasBoosted = true;
+                Player.BoosterAudioSource.Play();
+                Player.BoosterAudioSource.volume = 1;
+            }
         }
         else{
             chromatic.intensity.value = Mathf.Lerp(chromatic.intensity.value, 0f, 0.1f);
+            Player.BoosterAudioSource.volume = Mathf.Lerp(Player.BoosterAudioSource.volume, 0, 0.1f);
+            hasBoosted = false;
         }
 
         //Rotation
@@ -110,23 +118,7 @@ public class FlyingState : PlayerState
         //Movement
         transform.position += Player.Velocity * DeltaTime;
         Debug.DrawRay(transform.position, Player.Velocity, Color.magenta);
-        /*
-        //Strafing
-        float strafeVelocity = 0.0f;
-        if (Mathf.Abs(yaw) > Player.MinInput)
-        {
-            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, MaxStrafeSpeed * yaw, ref strafeVelocity, StrafeSmoothTime, 10000.0f, DeltaTime);
-        }
-        else
-        {
-            StrafeSpeed = Mathf.SmoothDamp(StrafeSpeed, 0.0f, ref strafeVelocity, StrafeDecelerationSmoothTime, 10000.0f, DeltaTime);
-        }
-
-        Vector3 velocity = Model.transform.right * StrafeSpeed;
-        hit = PlayerPhysics.PreventCollision(() => Player.Cast(velocity.normalized, 100000.0f), ref velocity, transform, DeltaTime, 0.03f);
-
-        transform.position += velocity * DeltaTime;
-        Debug.DrawRay(transform.position, velocity, Color.red);
-        */
     }
+
 }
+

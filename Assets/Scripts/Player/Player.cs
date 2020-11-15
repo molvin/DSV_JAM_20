@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     public Vector3 Velocity;
     public float TimeScale = 1.0f;
     public AudioSource ScratchSound;
+    public AudioSource BoosterAudioSource;
 
     public static Vector3 Forward => Instance.Model.forward;
     public static Vector3 Up => Instance.Model.up;
